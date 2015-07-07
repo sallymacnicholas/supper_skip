@@ -49,6 +49,8 @@ group :development, :test do
   gem 'pry'
   gem 'factory_girl_rails', '~> 4.5.0'
   gem 'database_cleaner', '~> 1.4.0'
+  # Security scanner that tests for vulnerabilities
+  gem 'brakeman'
 end
 group :production do
   gem 'rails_12factor', '0.0.2'
