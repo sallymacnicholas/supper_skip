@@ -35,7 +35,7 @@ gem 'bcrypt', '~> 3.1.7'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-
+gem 'friendly_id'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', '~> 3.5.0'
@@ -51,6 +51,7 @@ group :development, :test do
   gem 'database_cleaner', '~> 1.4.0'
   # Security scanner that tests for vulnerabilities
   gem 'brakeman'
+  gem 'better_errors'
 end
 group :production do
   gem 'rails_12factor', '0.0.2'
