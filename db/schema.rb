@@ -102,9 +102,9 @@ ActiveRecord::Schema.define(version: 20150707210910) do
   create_table "restaurants", force: :cascade do |t|
     t.string   "name"
     t.string   "description"
-    t.string   "slug",        default: "name"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.string   "slug"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.integer  "user_id"
   end
 

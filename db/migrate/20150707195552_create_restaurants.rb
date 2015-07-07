@@ -3,7 +3,7 @@ class CreateRestaurants < ActiveRecord::Migration
     create_table :restaurants do |t|
       t.string :name
       t.string :description
-      t.string :slug, use: :slugged, default: :name
+      t.string :slug, use: :slugged
 
       t.timestamps null: false
     end

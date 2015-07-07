@@ -93,22 +93,6 @@ describe "the user" do
     expect(page).to have_content("Successfully logged in")
   end
 
-  it "is redirected back to the page it came from" do
-    user = build(:user)
-
-    visit menu_path
-    click_link("Login")
-    click_link("here")
-    fill_in "user[full_name]", with: user.full_name
-    fill_in "user[display_name]", with: user.display_name
-    fill_in "user[email]", with: user.email
-    fill_in "user[password]", with: user.password
-    fill_in "user[password_confirmation]", with: user.password
-    click_button("Create my account!")
-
-    expect(current_path).to eq menu_path
-  end
-
   it "sees a Logout button instead of Login " do
     mock_user
 
