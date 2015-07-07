@@ -1,5 +1,5 @@
 <h1>Enter your credentials</h1>
-<%= bootstrap_form_for(@user, :url => {:controller => 'users', :action => 'create'}) do |f| %>
+<%= bootstrap_form_for(@user) do |f| %>
   <%= f.text_field :full_name %>
   <%= f.text_field :display_name %>
   <%= f.email_field :email %>
