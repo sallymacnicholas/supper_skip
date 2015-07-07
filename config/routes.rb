@@ -33,6 +33,8 @@ Rails.application.routes.draw do
                                   :index]
     resources :items, only: [:index, :new, :create, :edit, :update]
   end
-
+  
+  resources :restaurants, only: [:new, :create]
+  
   get "*rest" => "static_pages#not_found"
 end
