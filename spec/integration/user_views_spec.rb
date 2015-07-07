@@ -11,6 +11,12 @@ describe "the user" do
     expect(page).to_not have_link("Logout")
   end
 
+  it "sees a Create Account button on homepage" do
+    visit root_path
+
+    expect(page).to have_link("Create Account")
+  end
+
   it "a user going to a non defined route gets redirected to the home page" do
     visit "/something"
 

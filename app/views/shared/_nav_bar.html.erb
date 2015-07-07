@@ -21,6 +21,7 @@
         <%= menu_item "Logout", logout_path, method: :delete %>
       <% else %>
         <%= menu_item "Login", login_path %>
+        <%= menu_item "Create Account", new_user_path %>
       <% end %>
     <% end %>
   </div>
