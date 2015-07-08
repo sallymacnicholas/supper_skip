@@ -1,10 +1,9 @@
 FactoryGirl.define do
   
-  # factory :restaurant do
-  #   name "MyString"
-  #   description "MyString"
-  #   slug "MyString"
-  # end
+  factory :restaurant do
+    name "Sallys Sushi"
+    description "So much raw fish"
+  end
 
 
   sequence :name do |n|
