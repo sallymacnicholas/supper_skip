@@ -1,9 +1,9 @@
 <h1>Enter your credentials</h1>
 <%= bootstrap_form_for(@user) do |f| %>
-  <%= f.text_field :full_name %>
-  <%= f.text_field :display_name %>
-  <%= f.email_field :email %>
-  <%= f.password_field :password %>
-  <%= f.password_field :password_confirmation %>
+  <%= f.text_field :full_name, hide_label: true, placeholder: "Full Name" %>
+  <%= f.text_field :display_name, hide_label: true, placeholder: "Display Name"  %>
+  <%= f.email_field :email, hide_label: true, placeholder: "Email"  %>
+  <%= f.password_field :password, hide_label: true, placeholder: "Password"  %>
+  <%= f.password_field :password_confirmation, hide_label: true, placeholder: "Confirm Password"  %>
   <%= f.submit "Create my account!" %>
 <% end %>
