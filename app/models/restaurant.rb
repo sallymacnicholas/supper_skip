@@ -1,6 +1,9 @@
 class Restaurant < ActiveRecord::Base
+  # attr_accessor :slug
   before_save :set_slug
-  belongs_to  :user
+  belongs_to :user
+  has_many :categories
+  has_many :items
   
   validates :name, presence: true,
                    uniqueness: true
@@ -8,10 +11,15 @@ class Restaurant < ActiveRecord::Base
   validates :description, presence: true
   
   def set_slug
+  #   binding.pry
     if slug.nil? || slug == ""
       self.slug = name.parameterize
     else
       self.slug = slug.parameterize
     end
+  end
+
+  def to_param
+    slug
   end
 end

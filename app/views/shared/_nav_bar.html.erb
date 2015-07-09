@@ -1,27 +1,33 @@
-<%= nav_bar fixed: :top, brand: "Speedy Turtle Pizza", responsive: true do %>
+<%= nav_bar fixed: :top, brand: "Eatsy", responsive: true do %>
+  <%#= menu_group do %>
+    <!--<a href="/"><img id="main-logo" src="http://s13.postimg.org/l7f8y6agj/tortuga_logo_sticker_proof.png" alt="" /></a>-->
+  <%# end %>
   <%= menu_group do %>
-    <a href="/"><img id="main-logo" src="http://s13.postimg.org/l7f8y6agj/tortuga_logo_sticker_proof.png" alt="" /></a>
-  <% end %>
-  <%= menu_group do %>
-    <%= menu_item "Home", root_path %>
+    <form class="navbar-form navbar-left" role="search">
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="search for good food">
+      </div>
+      <button type="submit" class="btn btn-default" id="search">Search</button>
+    </form>
     <%= menu_item "Menu", menu_path %>
     <% if current_user && current_user.admin? %>
       <%= menu_item "Admin", admin_path %>
     <% end %>
   <% end %>
+
   <div class="menu_right">
     <%= menu_group pull: :right  do %>
-      <% if current_user.nil? || !current_user.admin? %>
-        <%= menu_item "Cart", cart_path %>
-        <% if current_user %>
-          <%= menu_item "Past Orders", orders_path %>
-        <% end %>
-      <% end %>
       <% if current_user %>
         <%= menu_item "Logout", logout_path, method: :delete %>
       <% else %>
         <%= menu_item "Login", login_path %>
         <%= menu_item "Create Account", new_user_path %>
+      <% end %>
+      <% if current_user.nil? || !current_user.admin? %>
+        <%= menu_item "Cart", cart_path%>
+        <% if current_user %>
+          <%= menu_item "Past Orders", orders_path %>
+        <% end %>
       <% end %>
     <% end %>
   </div>

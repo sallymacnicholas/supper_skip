@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150707210910) do
+ActiveRecord::Schema.define(version: 20150709180130) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,9 +27,12 @@ ActiveRecord::Schema.define(version: 20150707210910) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "restaurant_id"
   end
+
+  add_index "categories", ["restaurant_id"], name: "index_categories_on_restaurant_id", using: :btree
 
   create_table "category_items", force: :cascade do |t|
     t.integer  "item_id"
@@ -70,12 +73,14 @@ ActiveRecord::Schema.define(version: 20150707210910) do
     t.text     "description"
     t.integer  "unit_price"
     t.boolean  "active"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.integer  "image_id"
+    t.integer  "restaurant_id"
   end
 
   add_index "items", ["image_id"], name: "index_items_on_image_id", using: :btree
+  add_index "items", ["restaurant_id"], name: "index_items_on_restaurant_id", using: :btree
 
   create_table "order_items", force: :cascade do |t|
     t.integer  "order_id"
@@ -119,9 +124,11 @@ ActiveRecord::Schema.define(version: 20150707210910) do
     t.datetime "updated_at",      null: false
   end
 
+  add_foreign_key "categories", "restaurants"
   add_foreign_key "category_items", "categories"
   add_foreign_key "category_items", "items"
   add_foreign_key "items", "images"
+  add_foreign_key "items", "restaurants"
   add_foreign_key "order_items", "items"
   add_foreign_key "order_items", "orders"
   add_foreign_key "orders", "users"

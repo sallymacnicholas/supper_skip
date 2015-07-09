@@ -1,17 +1,21 @@
 class RestaurantsController < ApplicationController
+  #In this controller, find restaurants by slug
+  
   def new
     @restaurant = Restaurant.new
   end
 
   def show
-    @restaurant = current_user.restaurants.find(params[:id])
+    @restaurant = Restaurant.find_by_slug(params[:slug])
+    @categories = @restaurant.categories
   end
 
   def create
-    restaurant = current_user.restaurants.new(restaurant_params)
-    if restaurant.save!
+    restaurant = Restaurant.new(restaurant_params)
+    restaurant.user_id = current_user.id
+    if restaurant.save
       flash[:success] = "Restaurant successfully created! Welcome."
-      redirect_to restaurant_path(restaurant)
+      redirect_to restaurant
     else
       flash[:errors] = restaurant.errors.full_messages.join(", ")
     end
