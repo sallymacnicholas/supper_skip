@@ -21,7 +21,6 @@ describe "the owner" do
     
     #route to admin namespace restaurants #show
     expect(current_path).to eq('/admin/restaurants/jorges-pita-bar')
-    save_and_open_page
     click_on 'Update Restaurant Info'
     #route to admin namespace restaurants #edit
     expect(current_path).to eq('/admin/restaurants/jorges-pita-bar/edit')

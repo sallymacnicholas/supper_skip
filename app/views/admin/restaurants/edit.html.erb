@@ -1,0 +1,7 @@
+<%= bootstrap_form_for [:admin, @restaurant], :html => { multipart: true }  do |f| %>
+  <%= f.text_field :name %>
+  <%= f.text_area :description %>
+  <%= f.text_field :slug, label: "URL Name" %>
+  
+  <%= f.submit "Update my restaurant", class: "btn btn-success" %>
+<% end %>
