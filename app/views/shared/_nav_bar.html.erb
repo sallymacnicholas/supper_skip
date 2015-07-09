@@ -29,6 +29,9 @@
           <%= menu_item "Past Orders", orders_path %>
         <% end %>
       <% end %>
+      <% if current_user.owns_restaurant? %>
+        <%= menu_item "Manage Restaurant", admin_restaurant_path(current_user.restaurants.first) %>
+      <% end %>
     <% end %>
   </div>
 <% end %>
