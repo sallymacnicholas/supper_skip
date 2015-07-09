@@ -17,6 +17,20 @@ describe "the user" do
     expect(page).to have_link("Create Account")
   end
 
+  it "sees all restaurants on homepage" do
+    one = Restaurant.create(name: "Sally's Sushi", description:"alskdfk")
+    two = Restaurant.create(name: "Chelsea's Cupcakes", description:"alskdfk")
+    three = Restaurant.create(name: "Morgan's Munchies", description:"alskdfk")
+
+    visit root_path
+
+    within(".featured-restaurants") do
+      expect(page).to have_content?(one.name)
+      expect(page).to have_content?(two.name)
+      expect(page).to have_content?(three.name)
+    end
+  end
+
   it "a user going to a non defined route gets redirected to the home page" do
     visit "/something"
 
