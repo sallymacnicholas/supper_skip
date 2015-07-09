@@ -32,6 +32,7 @@ Rails.application.routes.draw do
                                   :new,
                                   :index]
     resources :items, only: [:index, :new, :create, :edit, :update]
+    resources :restaurants, only: [:show, :edit], param: :slug
   end
 
   resources :restaurants, only: [:new, :create, :show], param: :slug
