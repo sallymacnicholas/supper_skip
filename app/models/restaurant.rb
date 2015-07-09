@@ -2,6 +2,8 @@ class Restaurant < ActiveRecord::Base
   # attr_accessor :slug
   before_save :set_slug
   belongs_to :user
+  has_many :categories
+  has_many :items
   
   validates :name, presence: true,
                    uniqueness: true
