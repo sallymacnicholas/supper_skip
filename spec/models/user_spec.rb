@@ -55,4 +55,12 @@ describe User, { type: "model" } do
 
     expect(user.admin?).not_to be_truthy
   end
+  
+  it "knows if it owns a restaurant" do
+    user = create(:user)
+    expect(user.owns_restaurant?).to_not be_truthy
+    
+    user.restaurants.create!(name: "restaurant", description: "restaurant")
+    expect(user.owns_restaurant?).to be_truthy
+  end
 end

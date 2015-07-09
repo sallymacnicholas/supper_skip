@@ -20,4 +20,8 @@ class User < ActiveRecord::Base
   def admin?
     false
   end
+  
+  def owns_restaurant?
+    !self.restaurants.empty?
+  end
 end
