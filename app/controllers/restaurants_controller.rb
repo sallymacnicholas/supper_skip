@@ -3,15 +3,25 @@ class RestaurantsController < ApplicationController
     @restaurant = Restaurant.new
   end
 
+  # def show
+  #   @restaurant = current_user.restaurants.find(params[:id])
+  # end
+
   def show
-    @restaurant = current_user.restaurants.find(params[:id])
+    @restaurant = Restaurant.find_by_slug(params[:id])
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @restaurant }
+    end
+    return restaurant_url
   end
 
   def create
-    restaurant = current_user.restaurants.new(restaurant_params)
-    if restaurant.save!
+    restaurant = Restaurant.new(restaurant_params)
+    restaurant.user_id = current_user.id
+    if restaurant.save
       flash[:success] = "Restaurant successfully created! Welcome."
-      redirect_to restaurant_path(restaurant)
+      redirect_to restaurant
     else
       flash[:errors] = restaurant.errors.full_messages.join(", ")
     end
