@@ -60,7 +60,8 @@ describe User, { type: "model" } do
     user = create(:user)
     expect(user.owns_restaurant?).to_not be_truthy
     
-    user.restaurants.create!(name: "restaurant", description: "restaurant")
+    restaurant = Restaurant.create!(name: "restaurant", description: "restaurant")
+    user.restaurant = restaurant
     expect(user.owns_restaurant?).to be_truthy
   end
 end

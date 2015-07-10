@@ -6,9 +6,13 @@ describe "the owner" do
                               email: "jorge@isfrommexico.com",
                               password: "password",
                               password_confirmation: "password")}
-  let!(:restaurant) { owner.restaurants.create!(name: "Jorge's Pita Bar",
-                                                description: "Hope you like falafel",
-                                                slug: "jorges-pita-bar")}
+  let!(:restaurant) {Restaurant.create!(name: "Jorge's Pita Bar",
+                                        description: "Hope you like falafel",
+                                        slug: "jorges-pita-bar")}
+  
+  before(:each) do
+    owner.restaurant = restaurant
+  end
   
   it "can update their restaurant's information" do
     allow_any_instance_of(ApplicationController)
@@ -27,10 +31,14 @@ describe "the owner" do
     fill_in "Description", with: "Home-churned ice cream"
     fill_in "URL Name", with: "jorges-ice-cream"
     click_on "Update my restaurant"
+    #For this form, have the fields pre-filled in with values so nothing is being submitted nil
     
     expect(current_path).to eq('/restaurants/jorges-ice-cream')
   end
   
+  it "can not update another restaurant's information" do
+    
+  end
+  
   #write sad path
-  #change has_many restaurants to has_one restaurant for users
 end

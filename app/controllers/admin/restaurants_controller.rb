@@ -3,6 +3,7 @@ class Admin::RestaurantsController < ApplicationController
   before_action :authorize_owner
   
   def show
+    #redirects to regular show page, with conditional for showing admin control panel partial
   end
   
   def edit
@@ -23,7 +24,7 @@ private
   end
   
   def current_restaurant
-    @restaurant = current_user.restaurants.find_by(slug: params[:slug])
+    @restaurant = current_user.restaurant
   end
   
   def authorize_owner

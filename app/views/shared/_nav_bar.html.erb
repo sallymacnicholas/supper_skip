@@ -30,7 +30,7 @@
         <% end %>
       <% end %>
       <% if current_user && current_user.owns_restaurant? %>
-        <%= menu_item "Manage Restaurant", admin_restaurant_path(current_user.restaurants.first) %>
+        <%= menu_item "Manage Restaurant", admin_restaurant_path(current_user.restaurant) %>
       <% end %>
     <% end %>
   </div>
