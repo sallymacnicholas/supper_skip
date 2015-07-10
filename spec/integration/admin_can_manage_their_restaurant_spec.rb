@@ -19,10 +19,8 @@ describe "the owner" do
       click_on "Manage Restaurant"
     end
     
-    #route to admin namespace restaurants #show
     expect(current_path).to eq('/admin/restaurants/jorges-pita-bar')
     click_on 'Update Restaurant Info'
-    #route to admin namespace restaurants #edit
     expect(current_path).to eq('/admin/restaurants/jorges-pita-bar/edit')
     
     fill_in "Name", with: "Jorge's Ice Cream"
@@ -32,4 +30,7 @@ describe "the owner" do
     
     expect(current_path).to eq('/restaurants/jorges-ice-cream')
   end
+  
+  #write sad path
+  #change has_many restaurants to has_one restaurant for users
 end
