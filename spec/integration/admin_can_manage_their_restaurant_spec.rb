@@ -37,8 +37,19 @@ describe "the owner" do
   end
   
   it "can not update another restaurant's information" do
+    different_owner = User.create!(full_name: "Morgan Miller",
+                                   email: "morgan@isnotfrommexico.com",
+                                   password: "password",
+                                   password_confirmation: "password")
+    different_restaurant = Restaurant.create!(name: "Morgans Munchies",
+                                              description: "Not just for stoners!")
+    different_owner.restaurant = different_restaurant
     
+    allow_any_instance_of(ApplicationController)
+      .to receive(:current_user).and_return(different_owner)
+    
+    visit '/admin/restaurants/jorges-pita-bar'
+    expect(current_path).to eq(root_path)
   end
   
-  #write sad path
 end
