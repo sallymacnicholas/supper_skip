@@ -2,7 +2,7 @@
 
 // Set the correct sprite paths
 @iconSpritePath: image-url("twitter/bootstrap/glyphicons-halflings.png");
-@iconWhiteSpritePath: image-url("twitter/bootstrap/glyphicons-halflings-white.png");
+@iconWhiteSpritePath: image-url("twitter/bootstrap/glyphicons-halflings-black.png");
 
 // Set the Font Awesome (Font Awesome is default. You can disable by commenting below lines)
 @fontAwesomeEotPath: font-url("fontawesome-webfont.eot");
@@ -14,8 +14,11 @@
 // Font Awesome
 @import "fontawesome/font-awesome";
 
+@import url("//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css");
+
+
 // Glyphicons
-//@import "twitter/bootstrap/glyphicons.less";
+// @import "twitter/bootstrap/glyphicons.less";
 
 // Your custom LESS stylesheets goes here
 //
@@ -35,6 +38,11 @@
 @link-color: #cfcd72;
 @brown: #756A4E;
 
+@font-face {
+  font-family: 'Glyphicons Halflings';
+  src: url('Content/fonts/glyphicons-halflings-regular.eot');
+  src: url('Content/fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded- opentype'), url('Content/fonts/glyphicons-halflings-regular.woff') format('woff'), url('Content/fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('Content/fonts/glyphicons-halflings-regular.svg#glyphicons-halflingsregular') format('svg');
+}
 
 img {
   width: 100%;
@@ -53,6 +61,7 @@ img {
 html body {
   background-color: #FFF;
   font-family: 'Arial', serif !important;
+  padding-top: 20px;
 }
 #center-form {
   max-height: 400px;
@@ -93,6 +102,7 @@ h1 {
 
 nav {
   background-color: #FFF ;
+  padding-bottom: 10px;
 }
 
 div {
@@ -122,15 +132,25 @@ nav.navbar.navbar-default.navbar-fixed-top {
   font-family: 'Arial', serif;
 }
 
+nav.navbar.navbar-default.navbar-fixed-top .glyphicon {
+  color: #666666 !important;
+}
 
 .navbar-default .navbar-nav > .active > a {
-  color: #0192B5 !important;
+  color: #0192B5;
   background-color: #FFF !important;
 }
 
 .navbar-default .navbar-nav > li a {
-  color: #0192B5 !important;
+  color: #0192B5;
 }
+
+.navbar-default .navbar-nav .glyphicon {
+
+  color: #666666;
+}
+
+
 
 a.navbar-brand {
   font-family: "Times New Roman";
@@ -269,11 +289,9 @@ div .dash-section.clearfix.summary {
 #static-header {
   h3 {
     text-align: center;
-    
+
   }
   p {
     text-align: justify;
   }
 }
-
-
