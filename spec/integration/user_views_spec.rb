@@ -24,7 +24,7 @@ describe "the user" do
 
     visit root_path
 
-    within(".featured-restaurants") do
+    within("#featured-restaurants") do
       expect(page).to have_content?(one.name)
       expect(page).to have_content?(two.name)
       expect(page).to have_content?(three.name)

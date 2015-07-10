@@ -115,6 +115,18 @@ ActiveRecord::Schema.define(version: 20150709180130) do
 
   add_index "restaurants", ["user_id"], name: "index_restaurants_on_user_id", using: :btree
 
+  create_table "roles", force: :cascade do |t|
+    t.string "description"
+  end
+
+  create_table "user_roles", force: :cascade do |t|
+    t.integer "role_id"
+    t.integer "user_id"
+  end
+
+  add_index "user_roles", ["role_id"], name: "index_user_roles_on_role_id", using: :btree
+  add_index "user_roles", ["user_id"], name: "index_user_roles_on_user_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "full_name"
     t.string   "email"
@@ -133,4 +145,5 @@ ActiveRecord::Schema.define(version: 20150709180130) do
   add_foreign_key "order_items", "orders"
   add_foreign_key "orders", "users"
   add_foreign_key "restaurants", "users"
+  add_foreign_key "user_roles", "roles"
 end

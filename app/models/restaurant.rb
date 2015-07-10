@@ -4,7 +4,7 @@ class Restaurant < ActiveRecord::Base
   belongs_to :user
   has_many :categories
   has_many :items
-  
+
   validates :name, presence: true,
                    uniqueness: true
   validates :slug, uniqueness: true
@@ -21,5 +21,9 @@ class Restaurant < ActiveRecord::Base
 
   def to_param
     slug
+  end
+
+  def self.featured_restaurants
+    all.sample(3)
   end
 end

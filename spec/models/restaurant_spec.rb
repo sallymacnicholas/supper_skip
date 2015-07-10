@@ -135,4 +135,13 @@ RSpec.describe Restaurant, type: :model do
     expect(mock_restaurant.user).to_not eq(other_user)
     expect(other_restaurant.user).to_not eq(mock_user)
   end
+
+  it "has featured restaurants" do
+    one = Restaurant.create(name: "Sally's Sushi", description:"alskdfk")
+    two = Restaurant.create(name: "Chelsea's Cupcakes", description:"alskdfk")
+    three = Restaurant.create(name: "Morgan's Munchies", description:"alskdfk")
+
+    expect(Restaurant.featured_restaurants.count).to eq(3)
+    expect(Restaurant.featured_restaurants).to include(one)
+  end
 end
