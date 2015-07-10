@@ -2,7 +2,7 @@
 
 // Set the correct sprite paths
 @iconSpritePath: image-url("twitter/bootstrap/glyphicons-halflings.png");
-@iconWhiteSpritePath: image-url("twitter/bootstrap/glyphicons-halflings-white.png");
+@iconWhiteSpritePath: image-url("twitter/bootstrap/glyphicons-halflings-black.png");
 
 // Set the Font Awesome (Font Awesome is default. You can disable by commenting below lines)
 @fontAwesomeEotPath: font-url("fontawesome-webfont.eot");
@@ -14,8 +14,11 @@
 // Font Awesome
 @import "fontawesome/font-awesome";
 
+@import url("//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css");
+
+
 // Glyphicons
-//@import "twitter/bootstrap/glyphicons.less";
+// @import "twitter/bootstrap/glyphicons.less";
 
 // Your custom LESS stylesheets goes here
 //
@@ -35,7 +38,6 @@
 @link-color: #cfcd72;
 @brown: #756A4E;
 
-
 img {
   width: 100%;
 }
@@ -44,9 +46,16 @@ img {
   min-height: 150px;
 }
 
+#border {
+  border-top: 1px solid #e2e2e2;
+  padding-top: 15px;
+  width: 100%;
+}
+
 html body {
   background-color: #FFF;
   font-family: 'Arial', serif !important;
+  padding-top: 20px;
 }
 #center-form {
   max-height: 400px;
@@ -87,6 +96,7 @@ h1 {
 
 nav {
   background-color: #FFF ;
+  padding-bottom: 10px;
 }
 
 div {
@@ -112,19 +122,26 @@ div .create_account a:hover {
 
 nav.navbar.navbar-default.navbar-fixed-top {
   background-color: #FFF;
-  font-size: 25px;
-  font-family: 'Arial', serif;
 }
 
+nav.navbar.navbar-default.navbar-fixed-top .glyphicon {
+  color: #666666 !important;
+}
 
 .navbar-default .navbar-nav > .active > a {
-  color: #0192B5 !important;
+  color: #0192B5;
   background-color: #FFF !important;
 }
 
 .navbar-default .navbar-nav > li a {
-  color: #0192B5 !important;
+  color: #0192B5;
 }
+
+.navbar-default .navbar-nav .glyphicon {
+  color: #666666;
+}
+
+
 
 a.navbar-brand {
   font-family: "Times New Roman";
@@ -263,11 +280,9 @@ div .dash-section.clearfix.summary {
 #static-header {
   h3 {
     text-align: center;
-    
+
   }
   p {
     text-align: justify;
   }
 }
-
-
