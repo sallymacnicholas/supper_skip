@@ -4,7 +4,7 @@ class Item < ActiveRecord::Base
   has_many :category_items
   has_many :categories, through: :category_items
   belongs_to :restaurant
-  
+
   has_many :order_items
   has_many :orders, through: :order_items
   belongs_to :image
@@ -13,7 +13,6 @@ class Item < ActiveRecord::Base
   validates :unit_price, presence: true, allow_blank: false,
     numericality: { only_integer: true, greater_than: 0 }
   validate :has_category_items
-
   def has_category_items
     errors.add(:base, "must add at least one category") if category_items.blank?
   end
