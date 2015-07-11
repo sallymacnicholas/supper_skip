@@ -203,4 +203,32 @@ describe "the user" do
       first(:button, "Add to cart").click
     end
   end
+
+  it "sees all restaurants on homepage" do
+    one = Restaurant.create(name: "Sally's Sushi", description:"alskdfk")
+    two = Restaurant.create(name: "Chelsea's Cupcakes", description:"alskdfk")
+    three = Restaurant.create(name: "Morgan's Munchies", description:"alskdfk")
+
+    category_one = one.categories.create(name: "Rolls")
+    category_two = two.categories.create(name: "Gluten Free")
+    category_three = three.categories.create(name: "Hungry Hungry Hippo")
+
+    image = Image.create!(title: "image", description: "sjsjjs")
+
+    one_item = Item.new(title: "Rainbow Roll", description: "pride roll", unit_price: 1000, categories: [category_one], image_id: image.id)
+    two_item = Item.new(title: "Chocolate Chip", description: "yum", unit_price: 1000, categories: [category_two], image_id: image.id)
+    three_item = Item.new(title: "Cheetos", description: "cheesy", unit_price: 1000, categories: [category_three], image_id: image.id)
+
+    one.items << one_item
+    two.items << two_item
+    three.items << three_item
+
+    visit root_path
+
+    within("#featured-restaurants") do
+      expect(page).to have_content(one.name)
+      expect(page).to have_content(two.name)
+      expect(page).to have_content(three.name)
+    end
+  end
 end

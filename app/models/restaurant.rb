@@ -20,4 +20,8 @@ class Restaurant < ActiveRecord::Base
   def to_param
     slug
   end
+
+  def self.featured_restaurants
+    all.sample(3)
+  end
 end
