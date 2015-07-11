@@ -437,4 +437,100 @@ class Seed
   end
 end
 
-Seed.new
+# Seed.new
+
+
+class NewSeed
+  attr_reader :users, :owners, :restaurants
+  
+  def initialize
+    generate_users
+    generate_restaurants
+    generate_categories
+    generate_images
+    generate_items
+  end
+
+  def generate_users
+    @owners = User.create!([
+        { full_name:             "Morgan Miller",
+          email:                 "mdub@gmail.com",
+          password:              "password",
+          password_confirmation: "password" },
+        { full_name:             "Sally MacNicholas",
+          email:                 "sdub@gmail.com",
+          password:              "password",
+          password_confirmation: "password",
+          display_name:          "Speedball Sally" },
+        { full_name:             "Chelsea Worrel",
+          email:                 "cdub@gmail.com",
+          password:              "password",
+          password_confirmation: "password",
+          display_name:          "C Dub" }
+      ])
+    
+    @users = User.create!([
+        { full_name:             "Josh Cheek",
+          email:                 "demo+josh@jumpstartlab.com",
+          password:              "password",
+          password_confirmation: "password" },
+        { full_name:             "Rachel Warbelow",
+          email:                 "demo+rachel@jumpstartlab.com",
+          password:              "password",
+          password_confirmation: "password" },
+        { full_name:             "Jeff Casimir",
+          email:                 "demo+jeff@jumpstartlab.com",
+          password:              "password",
+          password_confirmation: "password",
+          display_name:          "j3" },
+        { full_name:             "Jorge Tellez",
+          email:                 "demo+jorge@jumpstartlab.com",
+          password:              "password",
+          password_confirmation: "password",
+          display_name:          "novohispano" }
+      ])
+  end
+  
+  def generate_restaurants
+    unowned_restaurants = Restaurant.create!([
+      { name: "Morgan's Munchies", description: "Not just for stoners.", slug: "morgans-munchies" },
+      { name: "Sally's Sushi", description: "The best food from under the sea.", slug: "sallys-sushi" },
+      { name: "Chelsea's Cupcakes", description: "A strictly G-rated bakery.", slug: "chelseas-cupcakes" }
+    ])
+    
+    @restaurants = unowned_restaurants.zip(owners)
+    owned_restaurants.each do |restaurant, owner|
+      owner.restaurant = restaurant
+    end
+  end
+  
+  def generate_categories
+    categories = [Category.create([
+        { name: "Chips" },
+        { name: "Candy" },
+        { name: "Ice Cream" },
+        { name: "Popcorn" }
+      ]),
+      Category.create([
+          { name: "Rolls" },
+          { name: "Sashimi" },
+          { name: "Nigiri" },
+          { name: "Appetizers" }
+        ]),
+      Category.create([
+          { name: "Cupcakes" },
+          { name: "Mini Cupcakes" },
+          { name: "Cake Pops" },
+          { name: "Gluten Free" }
+        ])
+      ]
+    
+    @restaurants.each_with_index do |restaurant, i|
+      restaurant.categories << categories[i]
+    end
+  end
+  
+  def generate_images
+    
+  end
+end
