@@ -1,3 +1,4 @@
+<div id="center-form" class="col-sm-offset-3 col-sm-6">
 <h1>Enter your credentials</h1>
 <%= bootstrap_form_for(@user) do |f| %>
   <%= f.text_field :full_name, hide_label: true, placeholder: "Full Name" %>
@@ -7,3 +8,4 @@
   <%= f.password_field :password_confirmation, hide_label: true, placeholder: "Confirm Password"  %>
   <%= f.submit "Create my account!" %>
 <% end %>
+</div>

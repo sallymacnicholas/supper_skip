@@ -1,5 +1,8 @@
 class RestaurantsController < ApplicationController
   #In this controller, find restaurants by slug
+  def index
+    @restaurants = Restaurant.all
+  end
   
   def new
     @restaurant = Restaurant.new

@@ -2,7 +2,7 @@
 
 // Set the correct sprite paths
 @iconSpritePath: image-url("twitter/bootstrap/glyphicons-halflings.png");
-@iconWhiteSpritePath: image-url("twitter/bootstrap/glyphicons-halflings-white.png");
+@iconWhiteSpritePath: image-url("twitter/bootstrap/glyphicons-halflings-black.png");
 
 // Set the Font Awesome (Font Awesome is default. You can disable by commenting below lines)
 @fontAwesomeEotPath: font-url("fontawesome-webfont.eot");
@@ -14,8 +14,11 @@
 // Font Awesome
 @import "fontawesome/font-awesome";
 
+@import url("//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css");
+
+
 // Glyphicons
-//@import "twitter/bootstrap/glyphicons.less";
+// @import "twitter/bootstrap/glyphicons.less";
 
 // Your custom LESS stylesheets goes here
 //
@@ -35,7 +38,6 @@
 @link-color: #cfcd72;
 @brown: #756A4E;
 
-
 img {
   width: 100%;
 }
@@ -44,9 +46,16 @@ img {
   min-height: 150px;
 }
 
+#border {
+  border-top: 1px solid #e2e2e2;
+  padding-top: 15px;
+  width: 100%;
+}
+
 html body {
   background-color: #FFF;
   font-family: 'Arial', serif !important;
+  padding-top: 20px;
 }
 #center-form {
   max-height: 400px;
@@ -87,6 +96,7 @@ h1 {
 
 nav {
   background-color: #FFF ;
+  padding-bottom: 10px;
 }
 
 div {
@@ -112,18 +122,23 @@ div .create_account a:hover {
 
 nav.navbar.navbar-default.navbar-fixed-top {
   background-color: #FFF;
-  font-size: 25px;
-  font-family: 'Arial', serif;
 }
 
+nav.navbar.navbar-default.navbar-fixed-top .glyphicon {
+  color: #666666 !important;
+}
 
 .navbar-default .navbar-nav > .active > a {
-  color: #0192B5 !important;
+  color: #0192B5;
   background-color: #FFF !important;
 }
 
 .navbar-default .navbar-nav > li a {
-  color: #0192B5 !important;
+  color: #0192B5;
+}
+
+.navbar-default .navbar-nav .glyphicon {
+  color: #666666;
 }
 
 a.navbar-brand {
@@ -168,32 +183,43 @@ h4 a {
 }
 
 input[type="submit"] {
-  // color: #66AC9B;
-  // background-color: #44513B;
-  background: #44513B;
-  background-image: -webkit-linear-gradient(top, #44513B, #34312B);
-  background-image: -moz-linear-gradient(top, #44513B, #34312B);
-  background-image: -ms-linear-gradient(top, #44513B, #34312B);
-  background-image: -o-linear-gradient(top, #44513B, #34312B);
-  background-image: linear-gradient(to bottom, #44513B, #34312B);
-  -webkit-border-radius: 7;
-  -moz-border-radius: 7;
-  border-radius: 7px;
-  font-family: 'Arial', serif;
-  color: #C3CEA3;
-  font-size: 16px;
-  padding: 5px 10px 5px 10px;
-  text-decoration: none;
+  color: white;
+  border-color: #54acc7 #4ca0ba #398a9d;
+  background: -webkit-linear-gradient(top, #98d0e0 2%, #68b8d1 8%, #4fa9c6 58%, #4fa9c6 95%, #4ca4c0);
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  touch-action: manipulation;
+  cursor: pointer;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border-radius: 4px;
+  -webkit-user-select: none;
 }
 
 input[type="submit"]:hover {
-  background: #44513B;
-  background-image: -webkit-linear-gradient(top, #44513B, #44513B);
-  background-image: -moz-linear-gradient(top, #44513B, #44513B);
-  background-image: -ms-linear-gradient(top, #44513B, #44513B);
-  background-image: -o-linear-gradient(top, #44513B, #44513B);
-  background-image: linear-gradient(to bottom, #44513B, #44513B);
-  text-decoration: none;
+  color: white;
+  border-color: #54acc7 #4ca0ba #398a9d;
+  background: -webkit-linear-gradient(top, #98d0e0 2%, #68b8d1 8%, #4fa9c6 58%, #4fa9c6 95%, #4ca4c0);
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  touch-action: manipulation;
+  cursor: pointer;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border-radius: 4px;
+  -webkit-user-select: none;
 }
 
 .item-box .item-box-inner {
@@ -263,11 +289,9 @@ div .dash-section.clearfix.summary {
 #static-header {
   h3 {
     text-align: center;
-    
+
   }
   p {
     text-align: justify;
   }
 }
-
-
