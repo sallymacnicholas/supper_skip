@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root to: "static_pages#index"
+  root to: "homepage#index"
   resources :users, only: [:new, :create]
 
   get "/login"  => "sessions#new"
@@ -32,9 +32,10 @@ Rails.application.routes.draw do
                                   :new,
                                   :index]
     resources :items, only: [:index, :new, :create, :edit, :update]
+    resources :restaurants, only: [:show, :edit, :update], param: :slug
   end
 
   resources :restaurants, only: [:new, :create, :show], param: :slug
 
-  get "*rest" => "static_pages#not_found"
+  get "*rest" => "homepage#not_found"
 end

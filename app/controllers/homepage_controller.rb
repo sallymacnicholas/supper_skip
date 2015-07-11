@@ -1,4 +1,4 @@
-class StaticPagesController < ApplicationController
+class HomepageController < ApplicationController
   def not_found
     redirect_to root_path
   end

@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   has_secure_password
   has_many :orders
   has_many :order_items, through: :orders
-  has_many :restaurants
+  has_one :restaurant
 
   validates :full_name, presence: true, length: { in: 5..100 },
   format: { with: /\A[a-z ,.'-]+\z/i,  message: "Incorrect name format" }
@@ -19,5 +19,9 @@ class User < ActiveRecord::Base
 
   def admin?
     false
+  end
+  
+  def owns_restaurant?
+    self.restaurant
   end
 end

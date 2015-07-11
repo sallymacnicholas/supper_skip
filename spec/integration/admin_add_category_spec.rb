@@ -11,7 +11,7 @@ describe "admin adding cateogries", type: :feature do
                                                   and_return(user)
 
       visit admin_categories_path
-
+      
       expect(page).to have_link("Create Category")
     end
   end

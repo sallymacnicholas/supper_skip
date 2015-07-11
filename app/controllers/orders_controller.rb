@@ -24,3 +24,9 @@ class OrdersController < ApplicationController
     redirect_to order_path(@order)
   end
 end
+
+
+###When we get here, do not panic
+  # For user orders and restaurant orders,
+  # Create two separate tables
+  # and an order_creator PORO with nested transactions for user orders and restaurant orders 
