@@ -11,7 +11,6 @@ class Restaurant < ActiveRecord::Base
   validates :description, presence: true
   
   def set_slug
-  #   binding.pry
     if slug.nil? || slug == ""
       self.slug = name.parameterize
     else
