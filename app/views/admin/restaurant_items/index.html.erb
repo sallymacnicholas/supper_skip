@@ -1,3 +1,28 @@
 <h1>HEY BITCH. This is your restaurant's items</h1>
 
 <%= link_to "Create Item", new_admin_restaurant_item_path(@restaurant) %>
+
+<table class="table table-hover manage-item-list">
+  <thead>
+  <th>Image</th>
+  <th>Name</th>
+  <th>Description</th>
+  <th>Price</th>
+  <th>Category</th>
+  <th>Active?</th>
+  <th></th>
+  </thead>
+  <tbody>
+  <% @restaurant.items.each do |item| %>
+    <tr>
+      <td><%= image_tag item.image.url(:item_manage_list), class: "manage-item-img" %></td>
+      <td><%= item.title %></td>
+      <td><%= item.description %></td>
+      <td><%= item.dollar_amount %></td>
+      <td><%= item.category_list %></td>
+      <td><%= item.status %></td>
+      <td><%= link_to "Edit Item", admin_restaurant_item_path(@restaurant, item), class: "btn btn-default" %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

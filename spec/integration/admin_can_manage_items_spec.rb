@@ -35,7 +35,7 @@ describe "owner managing items", type: :feature do
     click_on "Create Item"
     
     expect(current_path).to eq(new_admin_restaurant_item_path(restaurant))
-    save_and_open_page
+    
     fill_in "Title", with: "Pita"
     fill_in "Description", with: "A delightful pita"
     fill_in "Price (in cents)", with: "1100"
@@ -44,8 +44,18 @@ describe "owner managing items", type: :feature do
     click_on "Add Item"
     
     expect(current_path).to eq(admin_restaurant_items_path(restaurant))
+    
     expect(page).to have_content("Pita")
     expect(page).to have_content("A delightful pita")
+    expect(page).to have_link("Edit Item")
+  end
+  
+  it "can edit an item" do
+    visit admin_restaurant_path(restaurant)
+
+    click_on "Manage Items"
+
+    expect(current_path).to eq(admin_restaurant_items_path(restaurant))
   end
 
 end
