@@ -24,7 +24,7 @@
             <div class="item-box-inner">
               <h4 class="item-title"><%= link_to item.title, item_path(item.id) %></h4>
               <br />
-              <%= image_tag item.image.img.url(:menu_list), class: "menu_list_img" %>
+              <%= image_tag item.image.url(:menu_list), class: "menu_list_img" %>
               <br />
               <br />
               <div class="item-desc"><%= item.description %></div></br>
