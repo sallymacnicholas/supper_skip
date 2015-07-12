@@ -21,7 +21,7 @@
       <td><%= item.dollar_amount %></td>
       <td><%= item.category_list %></td>
       <td><%= item.status %></td>
-      <td><%= link_to "Edit Item", admin_restaurant_item_path(@restaurant, item), class: "btn btn-default" %></td>
+      <td><%= link_to "Edit Item", edit_admin_restaurant_item_path(restaurant_slug: @restaurant.slug, id: item.id), class: "btn btn-default" %></td>
     </tr>
   <% end %>
   </tbody>

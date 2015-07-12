@@ -27,7 +27,7 @@ Rails.application.routes.draw do
     get "/users/:id" => "users#show", as: "show_user"
     resources :restaurants, only: [:show, :edit, :update], param: :slug do
       resources :categories, controller: "restaurant_categories"
-      resources :items, except: [:edit], controller: "restaurant_items"
+      resources :items, controller: "restaurant_items"
     end
   end
 

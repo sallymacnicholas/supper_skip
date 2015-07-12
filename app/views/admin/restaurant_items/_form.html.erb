@@ -1,4 +1,4 @@
-<%= bootstrap_form_for [:admin_restaurant, @item], :html => { multipart: true }  do |f| %>
+<%= bootstrap_form_for [:admin, @restaurant, @item], :html => { multipart: true }  do |f| %>
   <%= f.text_field :title %>
   
   <%= f.text_area :description %>
@@ -18,5 +18,5 @@
   
   <%= f.file_field :image %>
   
-  <%= f.submit "Add Item" %>
+  <%= f.submit "Submit Item" %>
 <% end %>

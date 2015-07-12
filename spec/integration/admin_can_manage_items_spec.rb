@@ -14,7 +14,7 @@ describe "owner managing items", type: :feature do
     owner.restaurant = restaurant
     allow_any_instance_of(ApplicationController)
       .to receive(:current_user).and_return(owner)
-    restaurant.categories << Category.create(name: "Pita things")
+    restaurant.categories << Category.create(name: "Things")
   end 
   
   it "can visit owner restaurant show page" do
@@ -39,9 +39,9 @@ describe "owner managing items", type: :feature do
     fill_in "Title", with: "Pita"
     fill_in "Description", with: "A delightful pita"
     fill_in "Price (in cents)", with: "1100"
-    select "Pita things", from: "item[categories][]"
+    select "Things", from: "item[categories][]"
     
-    click_on "Add Item"
+    click_on "Submit Item"
     
     expect(current_path).to eq(admin_restaurant_items_path(restaurant))
     
@@ -54,8 +54,26 @@ describe "owner managing items", type: :feature do
     visit admin_restaurant_path(restaurant)
 
     click_on "Manage Items"
-
+    click_on "Create Item"
+    fill_in "Title", with: "Pita"
+    fill_in "Description", with: "A delightful pita"
+    fill_in "Price (in cents)", with: "1100"
+    select "Things", from: "item[categories][]"
+    click_on "Submit Item"
+    
+    click_on "Edit Item"
+    fill_in "Title", with: "Falafel pita"
+    fill_in "Description", with: "A delightful falafel pita"
+    fill_in "Price (in cents)", with: "1500"
+    select "Things", from: "item[categories][]"
+    click_on "Submit Item"
+    
     expect(current_path).to eq(admin_restaurant_items_path(restaurant))
+    expect(page).to_not have_content("Pita")
+    expect(page).to_not have_content("A delightful pita")
+
+    expect(page).to have_content("Falafel pita")
+    expect(page).to have_content("A delightful falafel pita")
   end
 
 end
