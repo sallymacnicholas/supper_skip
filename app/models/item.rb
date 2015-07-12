@@ -24,8 +24,8 @@ class Item < ActiveRecord::Base
     errors.add(:base, "must add at least one category") if category_items.blank?
   end
 
-  def dollar_amount
-    number_to_currency(unit_price / 100.00)
+  def dollar_amount(price = unit_price)
+    number_to_currency(price / 100.00)
   end
 
   def category_list

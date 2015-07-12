@@ -60,5 +60,6 @@ describe "user adds to cart and", type: :feature do
     expect(page).to have_content("Falafel pita")
     expect(page).to have_content("Sallys Sushi")
     expect(page).to have_content("Rainbow Roll")
+    expect(page).to have_content("Total: $26.00")
   end
 end 

@@ -30,6 +30,10 @@ class Cart
     cart_items.map { |item, quantity| [Item.find(item), quantity] }.to_h
   end
   
+  def total_cost
+    all_items.map { |item, quantity| item.unit_price }.sum
+  end
+  
   def items_by_restaurant
     all_items.group_by { |i, q| i.restaurant }
   end
