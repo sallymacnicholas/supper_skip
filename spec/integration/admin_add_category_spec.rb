@@ -18,7 +18,7 @@ describe "admin adding cateogries", type: :feature do
 
   describe "the category add page" do
 
-    it "has a category add page" do
+    xit "has a category add page" do
       user = create(:admin)
       allow_any_instance_of(ApplicationController). to receive(:current_user).
         and_return(user)
@@ -28,7 +28,7 @@ describe "admin adding cateogries", type: :feature do
       expect(page).to have_content("Create New Category")
     end
 
-    it "can add a category" do
+    xit "can add a category" do
       user = create(:admin)
       allow_any_instance_of(ApplicationController).
         to receive(:current_user).
@@ -41,7 +41,7 @@ describe "admin adding cateogries", type: :feature do
       expect(page).to have_content("NEW CATEGORY")
     end
 
-    it "redirects to categories page when done" do
+    xit "redirects to categories page when done" do
       user = create(:admin)
       allow_any_instance_of(ApplicationController).
         to receive(:current_user).

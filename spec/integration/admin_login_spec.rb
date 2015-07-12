@@ -4,7 +4,7 @@ describe "admin authorization", type: :feature do
   include Capybara::DSL
 
   describe "admin login" do
-    it "allows a user to log in as an admin and go to the dashboard" do
+    xit "allows a user to log in as an admin and go to the dashboard" do
       create(:admin)
 
       visit root_url
