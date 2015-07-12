@@ -75,5 +75,25 @@ describe "owner managing items", type: :feature do
     expect(page).to have_content("Falafel pita")
     expect(page).to have_content("A delightful falafel pita")
   end
+  
+  it "can retire an item" do
+    visit admin_restaurant_path(restaurant)
+
+    click_on "Manage Items"
+    click_on "Create Item"
+    fill_in "Title", with: "Pita"
+    fill_in "Description", with: "A delightful pita"
+    fill_in "Price (in cents)", with: "1100"
+    select "Things", from: "item[categories][]"
+    click_on "Submit Item"
+    
+    click_on "Edit Item"
+    select "Things", from: "item[categories][]"
+    uncheck "Active?"
+    click_on "Submit Item"
+    
+    expect(current_path).to eq(admin_restaurant_items_path(restaurant))
+    expect(page).to have_content "Inactive"
+  end
 
 end
