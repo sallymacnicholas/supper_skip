@@ -15,7 +15,7 @@ describe "users cannot access any admin things", type: :feature do
 
   describe "items listing" do
 
-    it "cannot access items index as a user" do
+    xit "cannot access items index as a user" do
       mock_user
 
       visit admin_items_path
@@ -23,7 +23,7 @@ describe "users cannot access any admin things", type: :feature do
       expect(current_path).to eq(root_path)
     end
 
-    it "cannot create a new item" do
+    xit "cannot create a new item" do
       mock_user
 
       visit new_admin_item_path

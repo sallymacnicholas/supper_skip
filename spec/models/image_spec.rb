@@ -19,12 +19,6 @@ RSpec.describe Image, type: :model do
     expect(item).not_to be_valid
   end
 
-  it "is invalid without a img_file_name" do
-    item = build(:image, img_file_name: nil)
-
-    expect(item).not_to be_valid
-  end
-
   it "is invalid with a duplicate image title" do
     create(:image, title: "puke")
     item = build(:image, title: "puke")
