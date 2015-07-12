@@ -19,20 +19,22 @@ Rails.application.routes.draw do
   resources :items, only: [:show]
   resources :orders, only: [:show, :new, :create, :index]
 
-  scope "admin", module: "admin", as: "admin" do
+  # namespace :admin do
+  #   resources :restaurants, param: :slug do
+  #     resources :items, only: [:index, :new, :create, :edit, :update], param: :slug
+  #   end
+  # end
+
+  namespace :admin do
     post "/orders/:status" => "orders#filter", as: "filter_order"
     put "/orders/:id" => "orders#update", as: "update_order"
     get "/orders/:status" => "orders#filter", as: "order"
     get "/users" => "users#index"
     get "/users/:id" => "users#show", as: "show_user"
-    resources :categories, only: [:create,
-                                  :update,
-                                  :edit,
-                                  :destroy,
-                                  :new,
-                                  :index]
-    resources :items, only: [:index, :new, :create, :edit, :update]
-    resources :restaurants, only: [:show, :edit, :update], param: :slug
+    resources :restaurants, only: [:show, :edit, :update], param: :slug do
+      resources :categories, controller: "restaurant_categories"
+      resources :items, only: [:index, :new, :create, :edit, :update], controller: "restaurant_items"
+    end
   end
 
   resources :restaurants, only: [:new, :create, :show], param: :slug

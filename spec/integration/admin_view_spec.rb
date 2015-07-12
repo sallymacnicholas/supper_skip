@@ -19,7 +19,7 @@ describe "the admin view", type: feature do
 
   describe "admin dashboard" do
 
-    it "exists" do
+    xit "exists" do
       admin = create(:admin, email: "test@test.com")
       allow_any_instance_of(ApplicationController).
         to receive(:current_user).

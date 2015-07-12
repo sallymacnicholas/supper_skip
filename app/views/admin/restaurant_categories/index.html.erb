@@ -1,0 +1,8 @@
+
+<div class="edit_categories">
+  <% @categories.each do |category| %>
+    <p><h4> <%= category.id %> <%= category.name %></h4></p>
+    <p> <%= link_to "Edit Category", edit_admin_restaurant_category_path(category.id) %></p>
+  <% end %>
+  <p><%= link_to "Create Category", new_admin_restaurant_category_path %></p>
+</div>

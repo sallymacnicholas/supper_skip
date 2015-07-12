@@ -25,7 +25,8 @@ describe "the owner" do
     end
 
     expect(current_path).to eq('/admin/restaurants/jorges-pita-bar')
-    click_on 'Update Restaurant Info'
+    save_and_open_page
+    click_on 'Manage Restaurant Profile'
     expect(current_path).to eq('/admin/restaurants/jorges-pita-bar/edit')
 
     fill_in "Name", with: "Jorge's Ice Cream"
