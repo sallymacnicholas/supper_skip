@@ -52,6 +52,7 @@ group :development, :test do
   # Security scanner that tests for vulnerabilities
   gem 'brakeman'
   gem 'better_errors'
+  gem 'faker'
 end
 group :production do
   gem 'rails_12factor', '0.0.2'

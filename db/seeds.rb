@@ -1,3 +1,5 @@
+require 'faker'
+
 class Seed
   attr_accessor :categories, :items, :users, :admins
   def initialize
@@ -447,7 +449,6 @@ class NewSeed
     generate_users
     generate_restaurants
     generate_categories
-    generate_images
     generate_items
   end
 
@@ -498,10 +499,11 @@ class NewSeed
       { name: "Chelsea's Cupcakes", description: "A strictly G-rated bakery.", slug: "chelseas-cupcakes" }
     ])
     
-    @restaurants = unowned_restaurants.zip(owners)
-    owned_restaurants.each do |restaurant, owner|
+    restaurants = unowned_restaurants.zip(owners)
+    restaurants.each do |restaurant, owner|
       owner.restaurant = restaurant
     end
+    @restaurants = restaurants.map { |r, o| r }
   end
   
   def generate_categories
@@ -530,7 +532,28 @@ class NewSeed
     end
   end
   
-  def generate_images
-    
+  def generate_items
+    10.times do
+      item = Item.new(title: Faker::Commerce.product_name, description: Faker::Lorem.sentence, unit_price: 5000, categories: @restaurants[0].categories.sample(2), active: true)
+      @restaurants[0].items << item
+      item.image = File.open("#{Rails.root}/app/assets/images/default.png")
+      item.save!
+    end
+
+    10.times do
+      item = Item.new(title: Faker::Commerce.product_name, description: Faker::Lorem.sentence, unit_price: 5000, categories: @restaurants[1].categories.sample(2), active: true)
+      @restaurants[1].items << item 
+      item.image = File.open("#{Rails.root}/app/assets/images/default.png")
+      item.save!
+    end
+
+    10.times do
+      item = Item.new(title: Faker::Commerce.product_name, description: Faker::Lorem.sentence, unit_price: 5000, categories: @restaurants[2].categories.sample(2), active: true)
+      @restaurants[2].items << item
+      item.image = File.open("#{Rails.root}/app/assets/images/default.png")
+      item.save!
+    end
   end
 end
+
+NewSeed.new

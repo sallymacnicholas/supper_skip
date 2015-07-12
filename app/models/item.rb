@@ -13,6 +13,13 @@ class Item < ActiveRecord::Base
   validates :unit_price, presence: true, allow_blank: false,
     numericality: { only_integer: true, greater_than: 0 }
   validate :has_category_items
+
+  has_attached_file :image, :styles => { item_manage_list: "75x75>",
+                                          menu_list: "150x150>",
+                                          item_list: "400x400>" },
+                             :default_url => "#{Rails.root}/spec/support/images/default.png"
+  validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
+  
   def has_category_items
     errors.add(:base, "must add at least one category") if category_items.blank?
   end
