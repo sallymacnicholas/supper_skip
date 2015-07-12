@@ -4,13 +4,14 @@
   <h2>Your Cart</h2>
   <div class="row">
     <div class="col-lg-10">
-      <% @cart.cart_items.each do |key, count| %>
-      <% item = Item.find(key) %>
-      <a name="<%= item.title %>"></a>
+      <% @cart.items_by_restaurant.each do |restaurant, items| %>
       <div class="category-box row" >
-        <h3><%= item.title%></h3> <%= item.description%> <%= item.dollar_amount %> Quantity: <%= count %>
-        <%= button_to "Add one more!", update_item_path(item_id: item.id) %>
-        <%= button_to  "Remove from Cart", remove_item_path(item_id: item.id), data: { confirm: 'Are you sure you want to remove this item from your cart?' }, id:"btn-danger" %>
+        <h3><%= restaurant.name %></h3>
+        <% items.each do |item, quantity| %>
+          <%= item.title %>, <%= item.description %>  <%= item.dollar_amount %> Quantity: <%= quantity %>
+          <%= button_to "Add one more!", update_item_path(item_id: item.id) %>
+          <%= button_to  "Remove from Cart", remove_item_path(item_id: item.id), data: { confirm: 'Are you sure you want to remove this item from your cart?' } %>
+        <% end %>
       </div>
       <% end %>
     </div>
@@ -21,3 +22,11 @@
     <% end %>
   </div>
 <% end %>
+
+
+ <!--@cart.items_by_restaurant.each do |r, i|-->
+   <!--puts r.name-->
+   <!--i.each do |i, q|-->
+     <!--puts "#{i.title}: #{q.to_s}"-->
+   <!--end-->
+ <!--end-->
