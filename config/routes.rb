@@ -25,8 +25,14 @@ Rails.application.routes.draw do
     get "/orders/:status" => "orders#filter", as: "order"
     get "/users" => "users#index"
     get "/users/:id" => "users#show", as: "show_user"
+    resources :categories, only: [:create,
+                                  :update,
+                                  :edit,
+                                  :destroy,
+                                  :new,
+                                  :index]
     resources :restaurants, only: [:show, :edit, :update], param: :slug do
-      resources :categories, controller: "restaurant_categories"
+      # resources :categories, controller: "restaurant_categories"
       resources :items, controller: "restaurant_items"
     end
   end

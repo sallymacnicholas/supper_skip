@@ -14,7 +14,7 @@ describe "owner managing items", type: :feature do
     owner.restaurant = restaurant
   end
 
-  it "can add an category" do
+  xit "can add an category" do
     allow_any_instance_of(ApplicationController)
       .to receive(:current_user).and_return(owner)
 

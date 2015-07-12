@@ -25,7 +25,7 @@ describe "the owner" do
     end
 
     expect(current_path).to eq('/admin/restaurants/jorges-pita-bar')
-    save_and_open_page
+    
     click_on 'Manage Restaurant Profile'
     expect(current_path).to eq('/admin/restaurants/jorges-pita-bar/edit')
 
@@ -33,7 +33,6 @@ describe "the owner" do
     fill_in "Description", with: "Home-churned ice cream"
     fill_in "URL Name", with: "jorges-ice-cream"
     click_on "Update my restaurant"
-    #For this form, have the fields pre-filled in with values so nothing is being submitted nil
 
     expect(current_path).to eq('/restaurants/jorges-ice-cream')
   end
