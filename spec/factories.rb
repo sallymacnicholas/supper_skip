@@ -1,4 +1,8 @@
-FactoryGirl.define do
+FactoryGirl.define do  factory :user_transaction do
+    order_total 1
+user nil
+  end
+
   
   factory :restaurant do
     name "Sallys Sushi"
