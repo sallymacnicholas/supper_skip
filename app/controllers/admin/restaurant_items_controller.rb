@@ -1,5 +1,7 @@
 class Admin::RestaurantItemsController < ItemsController
   include Admin::RestaurantItemHelper
+  before_action :current_restaurant
+  before_action :authorize_owner
   
   def index
     @restaurant = Restaurant.find_by_slug(params[:restaurant_slug])
@@ -40,5 +42,15 @@ private
                                  :unit_price,
                                  :active,
                                  :image)
+  end
+
+  def current_restaurant
+    @restaurant = current_user.restaurant
+  end
+  
+  def authorize_owner
+    unless current_restaurant == Restaurant.find_by_slug(params[:restaurant_slug])
+      redirect_to root_path
+    end
   end
 end
