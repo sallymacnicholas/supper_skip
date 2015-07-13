@@ -180,11 +180,9 @@ describe "the user" do
     category_two = two.categories.create(name: "Gluten Free")
     category_three = three.categories.create(name: "Hungry Hungry Hippo")
 
-    image = Image.create!(title: "image", description: "sjsjjs")
-
-    one_item = Item.new(title: "Rainbow Roll", description: "pride roll", unit_price: 1000, categories: [category_one], image_id: image.id)
-    two_item = Item.new(title: "Chocolate Chip", description: "yum", unit_price: 1000, categories: [category_two], image_id: image.id)
-    three_item = Item.new(title: "Cheetos", description: "cheesy", unit_price: 1000, categories: [category_three], image_id: image.id)
+    one_item = Item.new(title: "Rainbow Roll", description: "pride roll", unit_price: 1000, categories: [category_one])
+    two_item = Item.new(title: "Chocolate Chip", description: "yum", unit_price: 1000, categories: [category_two])
+    three_item = Item.new(title: "Cheetos", description: "cheesy", unit_price: 1000, categories: [category_three])
 
     one.items << one_item
     two.items << two_item

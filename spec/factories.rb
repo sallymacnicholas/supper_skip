@@ -1,6 +1,8 @@
-FactoryGirl.define do  factory :user_transaction do
+FactoryGirl.define do  
+  
+  factory :user_transaction do
     order_total 1
-user nil
+    user nil
   end
 
   
@@ -31,12 +33,6 @@ user nil
     password "test"
     password_confirmation "test"
     display_name "John Smithy"
-  end
-
-  factory :image do
-    title "johnny"
-    description "johnny depp"
-    img File.new("#{Rails.root}/spec/support/images/heart_pizza.gif")
   end
 
   factory :item do
