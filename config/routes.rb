@@ -18,7 +18,7 @@ Rails.application.routes.draw do
 
   resources :items, only: [:show]
   resources :orders, only: [:show, :new, :create, :index]
-
+  resources :categories, only: [:show]
   namespace :admin do
     post "/orders/:status" => "orders#filter", as: "filter_order"
     put "/orders/:id" => "orders#update", as: "update_order"
@@ -32,7 +32,7 @@ Rails.application.routes.draw do
                                   :new,
                                   :index]
     resources :restaurants, only: [:show, :edit, :update], param: :slug do
-      # resources :categories, controller: "restaurant_categories"
+      resources :categories, controller: "restaurant_categories"
       resources :items, controller: "restaurant_items"
     end
   end
