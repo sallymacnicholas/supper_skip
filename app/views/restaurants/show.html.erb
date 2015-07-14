@@ -1,16 +1,17 @@
-<!-- <% render 'filter' %>
-<div class="categories">
-<% @categories.each do |category| %>
-  <div class="category" data-name="<%= category.name %>">
-    <h3><%= category.name %></h3>
-    <dl>
-      <dt>Menu</dt>
-      <dd class="category_name"><%= category.name %></dd>
-    </dl>
+<div class="row">
+  <div class="col-lg-3">
+    <div id="floater">
+      <h2>Menu</h2>
+      <div class="well sidebar-nav" >
+        <ul class="nav nav-list">
+          <% @categories.each do |category| %>
+            <li><%= link_to category.name, restaurant_path(anchor: category.name) %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
   </div>
-<% end %>
-</div> -->
-<div class="col-lg-10 col-lg-offset-1 category-items">
+<div class="col-lg-9  category-items">
   <% @categories.each do |category| %>
     <a name="<%= category.name %>"></a>
     <div class="category-box row">
