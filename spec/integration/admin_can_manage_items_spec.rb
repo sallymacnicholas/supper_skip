@@ -55,25 +55,25 @@ describe "owner managing items", type: :feature do
 
     click_on "Manage Items"
     click_on "Create Item"
-    fill_in "Title", with: "Pita"
+    fill_in "Title", with: "Blah"
     fill_in "Description", with: "A delightful pita"
     fill_in "Price (in cents)", with: "1100"
     select "Things", from: "item[categories][]"
     click_on "Submit Item"
     
     click_on "Edit Item"
-    fill_in "Title", with: "Falafel pita"
-    fill_in "Description", with: "A delightful falafel pita"
+    fill_in "Title", with: "A thing"
+    fill_in "Description", with: "A falafelly thing"
     fill_in "Price (in cents)", with: "1500"
     select "Things", from: "item[categories][]"
     click_on "Submit Item"
     
     expect(current_path).to eq(admin_restaurant_items_path(restaurant))
-    expect(page).to_not have_content("Pita")
+    expect(page).to_not have_content("Blah")
     expect(page).to_not have_content("A delightful pita")
 
-    expect(page).to have_content("Falafel pita")
-    expect(page).to have_content("A delightful falafel pita")
+    expect(page).to have_content("A thing")
+    expect(page).to have_content("A falafelly thing")
   end
   
   it "can retire an item" do
