@@ -1,4 +1,4 @@
-<h2 class="admin-title">Create New Category</h2>
+<h2 class="admin-title">Edit Category</h2>
 <div class="row">
   <div class="col-lg-3">
     <%= render 'admin/shared/owner_menu' %>
@@ -8,7 +8,7 @@
       <%= form_for [:admin, @restaurant, @category] do |f| %>
         <%= f.label :name %></br>
         <%= f.text_field :name %></br>
-        <p><%= f.submit "Submit Category" %></p>
+        <p><%= f.submit "Update Category" %></p>
       <% end %>
     </div>
   </div>

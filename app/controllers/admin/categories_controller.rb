@@ -1,5 +1,6 @@
 class Admin::CategoriesController < ApplicationController
-  before_action :authorize
+  before_action :authorize_owner
+
   def index
     @categories = Category.all
   end
@@ -27,5 +28,15 @@ class Admin::CategoriesController < ApplicationController
 
   def category_params
     params.require(:category).permit(:name)
+  end
+
+  def current_restaurant
+    @restaurant = current_user.restaurant
+  end
+
+  def authorize_owner
+    unless current_restaurant == Restaurant.find_by_slug(params[:restaurant_slug])
+      redirect_to root_path
+    end
   end
 end

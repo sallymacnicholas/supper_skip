@@ -131,7 +131,7 @@ describe "the user" do
       expect(page).to have_link("Past Orders")
     end
   end
-  
+
   it "gets redirected to home page if user tries to access admin page" do
     mock_user
 
@@ -194,6 +194,25 @@ describe "the user" do
       expect(page).to have_content(one.name)
       expect(page).to have_content(two.name)
       expect(page).to have_content(three.name)
+    end
+  end
+
+  it "sees a dropdown of all restaurants on all pages" do
+    one = Restaurant.create(name: "Jorge's Pita Bar", description:"alskdfk")
+    two = Restaurant.create(name: "Horace's Pizza Palace", description:"alskdfk")
+    three = Restaurant.create(name: "Mike's Asian Bistro", description:"alskdfk")
+
+    visit root_path
+
+    within(".dropdown-menu") do
+      click_on "Jorge's Pita Bar"
+      expect(current_path).to eq(restaurant_path(one))
+
+      click_on "Horace's Pizza Palace"
+      expect(current_path).to eq(restaurant_path(two))
+
+      click_on "Mike's Asian Bistro"
+      expect(current_path).to eq(restaurant_path(three))
     end
   end
 end

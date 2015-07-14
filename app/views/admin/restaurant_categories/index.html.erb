@@ -1,8 +1,9 @@
 
 <div class="edit_categories">
-  <% @categories.each do |category| %>
-    <p><h4> <%= category.id %> <%= category.name %></h4></p>
-    <p> <%= link_to "Edit Category", edit_admin_restaurant_category_path(category.id) %></p>
+  <p><%= link_to "Create Category", new_admin_restaurant_category_path(@restaurant) %></p>
+  <% @restaurant.categories.each do |category| %>
+    <p><%= category.name %>
+      <%= link_to "Edit Category", edit_admin_restaurant_category_path(restaurant_slug: @restaurant.slug, id: category.id) %>
+      <%= link_to "Delete Category", admin_restaurant_category_path(restaurant_slug: @restaurant.slug, id: category.id), method: :delete %></p>
   <% end %>
-  <p><%= link_to "Create Category", new_admin_restaurant_category_path %></p>
 </div>
