@@ -25,7 +25,6 @@
   <div class="menu_right">
     <%= menu_group pull: :right  do %>
       <% if current_user %>
-      <%= menu_item "Open a Restaurant", new_restaurant_path %>
         <%= menu_item "Logout", logout_path, method: :delete %>
       <% else %>
         <%= menu_item "Login", login_path %>
