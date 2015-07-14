@@ -131,18 +131,7 @@ describe "the user" do
       expect(page).to have_link("Past Orders")
     end
   end
-
-  it "sees a page called order summary after clicking checkout" do
-    mock_user
-    create_one_item_with_one_category
-    add_item_five_times_to_cart
-
-    visit cart_path
-    click_link_or_button("Checkout")
-
-    expect(page).to have_content("Order Summary")
-  end
-
+  
   it "gets redirected to home page if user tries to access admin page" do
     mock_user
 
@@ -160,28 +149,6 @@ describe "the user" do
 
       expect(current_path).to eq(orders_path)
       expect(page).to have_content("Your Past Orders")
-    end
-
-    it "shows the details for a past order" do
-      mock_user
-      order = Order.create(user_id: user.id,
-                           status:  "ordered",
-                           total_price: 14678)
-      item = create(:item)
-      order_item = OrderItem.create(order_id: order.id,
-                                    item_id: item.id,
-                                    quantity: 5,
-                                    line_item_price: 5 * item.unit_price)
-      order.order_items << order_item
-
-      visit root_path
-      click_link("Past Orders")
-
-      within("tbody") do
-        expect(page).to have_content("#{order.total_dollar_amount}")
-        expect(page).
-        to have_content("#{order.formatted_time(order.created_at)}")
-      end
     end
   end
 
@@ -213,11 +180,9 @@ describe "the user" do
     category_two = two.categories.create(name: "Gluten Free")
     category_three = three.categories.create(name: "Hungry Hungry Hippo")
 
-    image = Image.create!(title: "image", description: "sjsjjs")
-
-    one_item = Item.new(title: "Rainbow Roll", description: "pride roll", unit_price: 1000, categories: [category_one], image_id: image.id)
-    two_item = Item.new(title: "Chocolate Chip", description: "yum", unit_price: 1000, categories: [category_two], image_id: image.id)
-    three_item = Item.new(title: "Cheetos", description: "cheesy", unit_price: 1000, categories: [category_three], image_id: image.id)
+    one_item = Item.new(title: "Rainbow Roll", description: "pride roll", unit_price: 1000, categories: [category_one])
+    two_item = Item.new(title: "Chocolate Chip", description: "yum", unit_price: 1000, categories: [category_two])
+    three_item = Item.new(title: "Cheetos", description: "cheesy", unit_price: 1000, categories: [category_three])
 
     one.items << one_item
     two.items << two_item

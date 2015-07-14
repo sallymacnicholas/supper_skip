@@ -1,7 +1,12 @@
 class Order < ActiveRecord::Base
+  #Order needs to belong to restaurant
+  #User_transaction needs to have multiple orders
+  
+  
   include ActionView::Helpers::NumberHelper
-
+  belongs_to :restaurant
   belongs_to :user
+  belongs_to :user_transaction
   has_many :order_items
   has_many :items, through: :order_items
 
@@ -12,16 +17,11 @@ class Order < ActiveRecord::Base
   scope :completed, -> { where("status = ?", "completed") }
   scope :cancelled, -> { where("status = ?", "cancelled") }
 
-  def create_order_items(cart)
-    cart.cart_items.each do |key, count|
-      item = Item.find(key)
-      OrderItem.create(order_id:        id,
-                       item_id:         item.id,
-                       quantity:        count,
-                       line_item_price: count * item.unit_price)
-    end
+  def for_transaction(transaction_id)
+    where(user_transaction_id: transaction_id)
   end
-
+  
+  
   def formatted_created_at
     formatted_time(created_at)
   end
