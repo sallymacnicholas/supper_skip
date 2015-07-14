@@ -40,7 +40,9 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :restaurants, only: [:new, :create, :show], param: :slug
+  resources :restaurants, only: [:new, :create, :show], param: :slug do
+    resources :categories, only: [:show]
+  end
 
   get "*rest" => "homepage#not_found"
 end
