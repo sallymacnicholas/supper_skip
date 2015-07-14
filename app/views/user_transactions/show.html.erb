@@ -1,0 +1,35 @@
+<h3>Order Summary</h3>
+<strong>Order placed at:</strong> <%= @transaction.formatted_created_at %><br />
+<strong>Placed by:</strong> <%= @transaction.user.full_name %>, <%= @transaction.user.email %><br />
+
+
+    <% @transaction.orders.each do |order| %>
+      <p id="restaurant-order">
+        <h3><%= order.restaurant.name %></h3>
+        <strong>Current status:</strong> <%= order.status %>
+      <div class="table-responsive">
+      <table class="table table-striped">        
+        <tr>
+          <th>Item</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Subtotal</th>
+        </tr>
+        
+        
+        <% order.order_items.each do |order_item| %>
+          <% item = Item.find(order_item.item_id) %>
+          <%= content_tag :tr, id: order_item.item_id do -%>
+            <td><%= link_to item.title, item_path(item.id) %></a></td>
+            <td><%= item.dollar_amount %></td>
+            <td><%= order_item.quantity %></td>
+            <td><%= order_item.total_dollar_amount %></td>
+          <% end -%>
+        <% end %>
+      </table>
+      </div>
+    <% end %>
+
+<div class="summary row">
+  <h3>Order Total: <%= number_to_currency @transaction.total_dollar_amount %></h3>
+</div>

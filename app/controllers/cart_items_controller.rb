@@ -1,11 +1,13 @@
 class CartItemsController < ApplicationController
+  after_action "save_previous_url", only: [:create]
+  
   def index
   end
 
   def create
     @cart.add_item(params[:item_id])
     session[:cart] = @cart.cart_items
-    redirect_to menu_path
+    redirect_to cart_path
   end
 
   def destroy
@@ -23,5 +25,9 @@ class CartItemsController < ApplicationController
 
   def cart_params
     params.permit(:item_id)
+  end
+  
+  def save_previous_url
+    session[:previous_url] = URI(request.referer || '').path
   end
 end

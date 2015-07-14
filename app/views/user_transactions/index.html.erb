@@ -1,0 +1,26 @@
+<h3>Your Past Orders</h3>
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Date</th>
+      <th>Amount</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% if @transactions.nil? || @transactions.count == 0 %>
+      <div>You have no prior orders</div>
+    <% else %>
+      <% @transactions.each do |order| %>
+        <tr>
+          <td><%= link_to order.formatted_created_at, user_order_path(order) %></td>
+          <td><%= order.total_dollar_amount %></td>
+        </tr>
+      <% end %>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+<div class="summary row">
+  <h3>Total Orders: <%= @transactions.count %></h3>
+</div>

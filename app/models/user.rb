@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   has_many :orders
   has_many :order_items, through: :orders
   has_one :restaurant
+  has_many :user_transactions
 
   validates :full_name, presence: true, length: { in: 5..100 },
   format: { with: /\A[a-z ,.'-]+\z/i,  message: "Incorrect name format" }
@@ -23,5 +24,9 @@ class User < ActiveRecord::Base
   
   def owns_restaurant?
     self.restaurant
+  end
+
+  def most_recent_transaction
+    user_transactions.first
   end
 end
