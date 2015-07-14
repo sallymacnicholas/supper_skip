@@ -4,7 +4,7 @@ describe "editing categories woo", type: :feature do
 
   describe "editing categories" do
 
-    it "starts with category in index" do
+    xit "starts with category in index" do
       category = create(:category)
       user = create(:admin)
       allow_any_instance_of(ApplicationController). to receive(:current_user).
@@ -15,7 +15,7 @@ describe "editing categories woo", type: :feature do
       expect(page).to have_content(category.name)
     end
 
-    it "has an editing link" do
+    xit "has an editing link" do
       create(:category)
       user = create(:admin)
       allow_any_instance_of(ApplicationController). to receive(:current_user).
@@ -26,7 +26,7 @@ describe "editing categories woo", type: :feature do
       expect(page).to have_link("Edit Category")
     end
 
-    it "has an editing link that works" do
+    xit "has an editing link that works" do
       create(:category)
       user = create(:admin)
       allow_any_instance_of(ApplicationController). to receive(:current_user).
@@ -38,7 +38,7 @@ describe "editing categories woo", type: :feature do
       expect(page).to have_content("Edit Category")
     end
 
-    it "edits categories" do
+    xit "edits categories" do
       create(:category)
       user = create(:admin)
       allow_any_instance_of(ApplicationController). to receive(:current_user).

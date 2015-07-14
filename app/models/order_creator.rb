@@ -5,7 +5,7 @@ module OrderCreator
     restaurant_orders = cart.items_by_restaurant
     restaurant_orders.each do |restaurant, items|
       Order.transaction do
-        order = user.orders.create!(status: "ordered", restaurant_id: restaurant.id)
+        order = user.orders.create!(restaurant_id: restaurant.id)
         create_order_items(order, items)
         order.update_attributes(total_price: order.order_total)
         transaction.orders << order

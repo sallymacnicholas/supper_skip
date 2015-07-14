@@ -27,10 +27,33 @@ describe Order, type: "model" do
     expect(order.order_items.count).to eq(1)
   end
 
-  it "has a sorted method" do
+  it "has a default sort by descending order" do
     user2 = create(:user, full_name: "bob bob", email: "bob@gmail.com")
     order = Order.create(user_id: user2.id, status: "paid", total_price: 500)
     order2 = Order.create(user_id: user2.id, status: "paid", total_price: 540)
-    expect(Order.sorted).to eq([order2, order])
+    expect(Order.all).to eq([order2, order])
   end
+  
+  it "validates for status" do
+    user = create(:user, full_name: "bob bob", email: "bob@gmail.com")
+    order = Order.new(user_id: user.id, status: "paid", total_price: 500)
+    expect(order).to be_valid
+
+    order2 = Order.new(user_id: user.id, status: "not paid", total_price: 500)
+    expect(order2).to_not be_valid
+  end
+  
+  it "can only be cancelled if paid or ready for prep" do
+    user = create(:user, full_name: "bob bob", email: "bob@gmail.com")
+    order = Order.create(user_id: user.id, status: "paid", total_price: 500)
+    order.cancel
+    expect(order).to be_valid
+    expect(order.status).to eq("cancelled")
+
+    order2 = Order.create(user_id: user.id, status: "in preparation", total_price: 500)
+    order2.cancel
+    expect(order2.status).to eq("in preparation")
+  end
+  
+  
 end

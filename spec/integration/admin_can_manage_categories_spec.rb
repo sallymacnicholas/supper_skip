@@ -3,12 +3,12 @@ require "spec_helper"
 describe "owner managing items", type: :feature do
   include Capybara::DSL
   let!(:owner) { User.create!(full_name: "Jorge Tellez",
-    email: "jorge@isfrommexico.com",
-    password: "password",
-    password_confirmation: "password")}
+                              email: "jorge@isfrommexico.com",
+                              password: "password",
+                              password_confirmation: "password")}
   let!(:restaurant) {Restaurant.create!(name: "Jorge's Pita Bar",
-    description: "Hope you like falafel",
-    slug: "jorges-pita-bar")}
+                                        description: "Hope you like falafel",
+                                        slug: "jorges-pita-bar")}
 
   before(:each) do
     owner.restaurant = restaurant
@@ -25,8 +25,5 @@ describe "owner managing items", type: :feature do
 
     click_on "Create Category"
     expect(current_path).to eq(new_admin_restaurant_category_path)
-
-
   end
-
 end

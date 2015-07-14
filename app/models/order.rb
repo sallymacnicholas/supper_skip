@@ -1,9 +1,6 @@
 class Order < ActiveRecord::Base
-  #Order needs to belong to restaurant
-  #User_transaction needs to have multiple orders
-  
-  
   include ActionView::Helpers::NumberHelper
+  
   belongs_to :restaurant
   belongs_to :user
   belongs_to :user_transaction
@@ -11,16 +8,28 @@ class Order < ActiveRecord::Base
   has_many :items, through: :order_items
 
   validates :user_id, presence: true
+  validates :status, inclusion: { in: ['paid',
+                                       'ready for preparation',
+                                       'cancelled',
+                                       'in preparation',
+                                       'ready for delivery',
+                                       'out for delivery',
+                                       'completed'], 
+                     message: "invalid order status."}
 
-  scope :ordered, -> { where("status = ?", "ordered") }
-  scope :paid, -> { where("status = ?", "paid") }
-  scope :completed, -> { where("status = ?", "completed") }
-  scope :cancelled, -> { where("status = ?", "cancelled") }
+
+  default_scope { order('created_at DESC') }
+  scope :paid,                  -> { where("status = ?", "paid") }
+  scope :ready_for_preparation, -> { where("status = ?", "ready for preparation") }
+  scope :cancelled,             -> { where("status = ?", "cancelled") }
+  scope :in_preparation,        -> { where("status = ?", "in preparation") }
+  scope :ready_for_delivery,    -> { where("status = ?", "ready for delivery") }
+  scope :out_for_delivery,      -> { where("status = ?", "out for delivery") }
+  scope :completed,             -> { where("status = ?", "completed") }
 
   def for_transaction(transaction_id)
     where(user_transaction_id: transaction_id)
   end
-  
   
   def formatted_created_at
     formatted_time(created_at)
@@ -59,14 +68,16 @@ class Order < ActiveRecord::Base
   end
 
   def cancelable?
-    status == "ordered" || status == "paid"
+    status == "ready for preparation" || status == "paid"
   end
 
   def payable?
     status == "ordered"
   end
-
-  def self.sorted
-    Order.order(created_at: :desc)
+  
+  def cancel
+    if cancelable?
+      self.status = "cancelled"
+    end
   end
 end

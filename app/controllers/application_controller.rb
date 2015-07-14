@@ -10,10 +10,11 @@ class ApplicationController < ActionController::Base
   end
 
   def restaurant_dropdown
-    @restaurants = Restaurant.all
+    Restaurant.all
   end
   
-  helper_method :current_user, :restaurant_dropdown
+  helper_method :current_user
+  helper_method :restaurant_dropdown
 
   private
 

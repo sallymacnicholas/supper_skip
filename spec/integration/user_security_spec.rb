@@ -4,7 +4,7 @@ describe "users cannot access any admin things", type: :feature do
 
   describe "admin dashboard" do
 
-    it "cannot access the admin dashboard" do
+    xit "cannot access the admin dashboard" do
       mock_user
 
       visit admin_path
@@ -34,7 +34,7 @@ describe "users cannot access any admin things", type: :feature do
 
   describe "categories listing" do
 
-    it "cannot access categories index as a user" do
+    xit "cannot access categories index as a user" do
       mock_user
 
       visit admin_categories_path
@@ -42,7 +42,7 @@ describe "users cannot access any admin things", type: :feature do
       expect(current_path).to eq(root_path)
     end
 
-    it "cannot create a new category" do
+    xit "cannot create a new category" do
       mock_user
 
       visit new_admin_category_path
@@ -50,7 +50,7 @@ describe "users cannot access any admin things", type: :feature do
       expect(current_path).to eq(root_path)
     end
 
-    it "cannot edit a category" do
+    xit "cannot edit a category" do
       mock_user
       cat = create(:category)
 
