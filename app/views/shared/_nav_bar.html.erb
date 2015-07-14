@@ -10,6 +10,14 @@
       <button type="submit" class="btn btn-default" id="search">Search</button>
     </form>
     <%= menu_item "Menu", menu_path %>
+    <li class="dropdown">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Restaurants<span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <% restaurant_dropdown.each do |restaurant| %>
+            <li><%= link_to restaurant.name, restaurant_path(restaurant) %></li>
+          <% end %>
+        </ul>
+    </li>
     <% if current_user && current_user.admin? %>
       <%= menu_item "Admin", admin_path %>
     <% end %>
