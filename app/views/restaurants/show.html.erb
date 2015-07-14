@@ -15,10 +15,10 @@
     <% @categories.each do |category| %>
       <a name="<%= category.name %>"></a>
       <div class="category-box row" >
-        <h3>
+        <h1>
           <a id="<%= category.name %>" class="anchor"></a>
           <%= category.name %>
-        </h3>
+        </h1>
         <% category.items.active.each do |item| %>
           <div class="item-box col-md-4">
             <div class="item-box-inner">
