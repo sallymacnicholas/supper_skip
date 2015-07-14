@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   post "/update_item" => "cart_items#update"
 
   resources :items, only: [:show]
+  resources :orders, only: [:show, :new, :create, :index]
+  resources :categories, only: [:show]
   resources :orders, only: [:new, :create]
   get "/orders" => "user_transactions#index", as: "user_orders"
   get "/orders/:id" => "user_transactions#show", as: "user_order"
@@ -34,7 +36,7 @@ Rails.application.routes.draw do
                                   :new,
                                   :index]
     resources :restaurants, only: [:show, :edit, :update], param: :slug do
-      # resources :categories, controller: "restaurant_categories"
+      resources :categories, controller: "restaurant_categories"
       resources :items, controller: "restaurant_items"
     end
   end
