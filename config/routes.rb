@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   post "/remove_item" => "cart_items#destroy"
   post "/update_item" => "cart_items#update"
 
-  resources :items, only: [:show]
+  # resources :items, only: [:show]
   resources :categories, only: [:show]
   resources :orders, only: [:new, :create]
   get "/orders" => "user_transactions#index", as: "user_orders"
@@ -41,7 +41,8 @@ Rails.application.routes.draw do
   end
 
   resources :restaurants, only: [:new, :create, :show], param: :slug do
-    resources :categories, only: [:show]
+    # resources :categories, only: [:show]
+    resources :items, only: [:show]
   end
 
   get "*rest" => "homepage#not_found"
