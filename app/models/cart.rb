@@ -31,7 +31,7 @@ class Cart
   end
   
   def total_cost
-    all_items.map { |item, quantity| item.unit_price }.sum
+    all_items.map { |item, quantity| item.unit_price * quantity }.sum
   end
   
   def items_by_restaurant
