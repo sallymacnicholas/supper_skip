@@ -1,0 +1,7 @@
+<%= form_tag(new_admin_restaurant_user_restaurant_role_path(@restaurant), method: 'get') do %>
+  <%= label_tag(:email, "Email:") %>
+  <%= text_field_tag(:email) %>
+  <%= select_tag :roles,
+    options_from_collection_for_select(@roles, :id, :name) %>
+  <%= submit_tag("Submit") %>
+<% end %>

@@ -1,4 +1,12 @@
-FactoryGirl.define do  
+FactoryGirl.define do  factory :user_restaurant_role do
+    user nil
+role nil
+restaurant nil
+  end
+  factory :role do
+    name "MyString"
+  end
+  
   
   factory :user_transaction do
     order_total 1
