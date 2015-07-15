@@ -7,7 +7,6 @@ Rails.application.routes.draw do
   delete "/logout" => "sessions#destroy"
   get "/login_for_cart" => "sessions#new"
   get "/checkout_after_login" => "orders#create"
-  # get "/menu" => "items#menu"
 
   get "/admin" => "admin#index"
 
@@ -15,10 +14,9 @@ Rails.application.routes.draw do
   post "/cart" => "cart_items#create"
   post "/remove_item" => "cart_items#destroy"
   post "/update_item" => "cart_items#update"
-
-  resources :items, only: [:show]
+  
   resources :categories, only: [:show]
-  resources :orders, only: [:new, :create]
+  resources :orders, only: [:new, :create, :destroy]
   get "/orders" => "user_transactions#index", as: "user_orders"
   get "/orders/:id" => "user_transactions#show", as: "user_order"
 
@@ -41,7 +39,7 @@ Rails.application.routes.draw do
   end
 
   resources :restaurants, only: [:new, :create, :show], param: :slug do
-    resources :categories, only: [:show]
+    resources :items, only: [:show]
   end
 
   get "*rest" => "homepage#not_found"

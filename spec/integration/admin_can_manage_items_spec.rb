@@ -95,5 +95,18 @@ describe "owner managing items", type: :feature do
     expect(current_path).to eq(admin_restaurant_items_path(restaurant))
     expect(page).to have_content "Inactive"
   end
+  
+  it "cannot manage another owner's items" do
+    other_owner = User.create!(full_name: "Chelsea",
+                              email: "cdub@gmail.com",
+                              password: "password",
+                              password_confirmation: "password")
+    other_restaurant = Restaurant.create!(name: "Chelsea's Cookies",
+                                          description: "chocolate chip yum",
+                                          user: other_owner)
+    
+    visit admin_restaurant_path(other_restaurant)
+    expect(current_path).to eq(root_path)
+  end
 
 end

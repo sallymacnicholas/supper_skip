@@ -2,7 +2,6 @@ class UserTransaction < ActiveRecord::Base
   belongs_to :user
   has_many :orders
 
-
   def formatted_created_at
     formatted_time(created_at)
   end

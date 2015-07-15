@@ -1,8 +1,4 @@
 class ItemsController < ApplicationController
-  def menu
-    @items = Item.all
-    @categories = Category.all
-  end
 
   def show
     @item = Item.find(params[:id])
