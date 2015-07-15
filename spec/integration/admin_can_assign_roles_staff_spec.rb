@@ -14,7 +14,7 @@ describe "admin assigning roles to staff", type: :feature do
                               password: "password",
                               password_confirmation: "password")}
 
-  let!(:role) { Role.create!(name: "fucking cook")}
+  let!(:role) { Role.create!(name: "cook")}
 
   before(:each) do
     owner.restaurant = restaurant
@@ -32,7 +32,7 @@ describe "admin assigning roles to staff", type: :feature do
 
 
     fill_in "Email", with: "horace@isahipster.com"
-    select 'fucking cook', from: "roles"
+    select 'cook', from: "roles"
     click_on "Submit"
     expect(current_path).to eq(admin_restaurant_user_restaurant_roles_path(restaurant))
 

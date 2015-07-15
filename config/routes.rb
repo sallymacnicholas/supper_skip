@@ -35,7 +35,8 @@ Rails.application.routes.draw do
     resources :restaurants, only: [:show, :edit, :update], param: :slug do
       resources :categories, controller: "restaurant_categories"
       resources :items, controller: "restaurant_items"
-      resources :user_restaurant_roles, only: [:index, :create, :new]
+      resources :user_restaurant_roles, only: [:index, :create, :new], controller: "user_restaurant_roles"
+
     end
   end
 

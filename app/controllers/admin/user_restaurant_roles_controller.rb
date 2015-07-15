@@ -12,10 +12,16 @@ class Admin::UserRestaurantRolesController < ApplicationController
 
   def create
    @user = User.find_by(email: params[:email])
-   binding.pry
-     params[:user_role][:user_id] = user.id
-     user_role = UserRestaurantRole.create(user_id: @user.id, role_id: role.id, restaurant: @restau )
-     
+   user_role = UserRestaurantRole.create(user_id: @user.id, role_id: params[:roles].to_i, restaurant_id: @restaurant.id )
+   flash[:message] = "You suck"
+   redirect_to admin_restaurant_user_restaurant_roles_path(@restaurant)
+    #  if user_role.save
+    #    flash[:message] = "You have successfully added #{user.name} as '#{user.user_roles.map(&:role).last.name}'"
+    #    redirect_to admin_restaurant_user_restaurant_roles_path(@restaurant)
+    #  else
+    #    flash[:notice] = "THis doesn't work bitch"
+    #    render :new
+    #  end
   end
 
   private

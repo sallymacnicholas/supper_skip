@@ -1,4 +1,4 @@
-<%= form_tag(new_admin_restaurant_user_restaurant_role_path(@restaurant), method: 'get') do %>
+<%= form_tag(admin_restaurant_user_restaurant_roles_path(@restaurant), method: :post) do %>
   <%= label_tag(:email, "Email:") %>
   <%= text_field_tag(:email) %>
   <%= select_tag :roles,
