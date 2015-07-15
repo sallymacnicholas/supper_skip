@@ -1,14 +1,20 @@
+<div class="content-wrap col-md-12">
 <div class="category-box row">
-<h3><%= @item.title %></h3>
-<div class="item-box-inner">
-  <h4><%= @item.title %></h4>
-  <br />
+  <h1><%= @item.title %></h1><br>
+<div class="item-box-inner col-md-6">
 <%= image_tag @item.image.url(:item_list), class: "item_list_img" %>
-  <br />
-  <br />
-  <span class="item-desc"><%= @item.description %></span></br>
-  <%= @item.dollar_amount %></br>
-  <% if @item.active? %>
-    <%= button_to "Add to cart", cart_path(item_id: @item.id) %>
-  <% end %>
+  </div>
+
+<div id="listing-right-column" class="col-md-6">
+<div id="listing-page-cart">
+<div id="listing-page-cart-inner">
+  <h1><%= @item.description %></br><br></h1>
+  <h4><%= @item.dollar_amount %></br></h4>
+    <% if @item.active? %>
+      <%= button_to "Add to cart", cart_path(item_id: @item.id)%>
+    <% end %>
+</div>
+</div>
+</div>
+</div>
 </div>
