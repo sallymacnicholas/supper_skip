@@ -19,7 +19,7 @@ describe "the owner" do
       .to receive(:current_user).and_return(owner)
 
     visit '/'
-
+    save_and_open_page
     within ".menu_right" do
       click_on "Manage Restaurant"
     end
