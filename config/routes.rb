@@ -39,7 +39,6 @@ Rails.application.routes.draw do
   end
 
   resources :restaurants, only: [:new, :create, :show], param: :slug do
-    # resources :categories, only: [:show]
     resources :items, only: [:show]
   end
 
