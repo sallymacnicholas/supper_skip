@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
   validates :display_name, length: { in: 2..32 }, allow_blank: true
 
   def admin?
-    false
+    false 
   end
   
   def owns_restaurant?
@@ -27,6 +27,6 @@ class User < ActiveRecord::Base
   end
 
   def most_recent_transaction
-    user_transactions.first
+    user_transactions.last
   end
 end

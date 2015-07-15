@@ -26,7 +26,7 @@ class Order < ActiveRecord::Base
   scope :ready_for_delivery,    -> { where("status = ?", "ready for delivery") }
   scope :out_for_delivery,      -> { where("status = ?", "out for delivery") }
   scope :completed,             -> { where("status = ?", "completed") }
-
+  
   def for_transaction(transaction_id)
     where(user_transaction_id: transaction_id)
   end
@@ -53,6 +53,10 @@ class Order < ActiveRecord::Base
 
   def formatted_time(time_type)
     time_type.localtime.strftime("%I:%M%P on %a, %b %-d, %Y")
+  end
+  
+  def formatted_status
+    status.split.map {|w| w.capitalize! }.join(" ")
   end
 
   def updated?

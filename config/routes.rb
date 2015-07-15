@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   post "/update_item" => "cart_items#update"
   
   resources :categories, only: [:show]
-  resources :orders, only: [:new, :create]
+  resources :orders, only: [:new, :create, :destroy]
   get "/orders" => "user_transactions#index", as: "user_orders"
   get "/orders/:id" => "user_transactions#show", as: "user_order"
 
