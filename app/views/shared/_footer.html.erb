@@ -1,6 +1,8 @@
 <div id="border" class="row footer-section">
     <% if current_user %>
     <h3><%= button_to "Open a Restaurant", new_restaurant_path, :method => :get  %></h3>
+    <% else %>
+    <h6>To Open a Restaurant <%= link_to "Create Account!", new_user_path %></h6>
     <% end %><br>
 <h6>Site Created By: Chelsea Worrel, Morgan Miller and Sally MacNicholas 2015</h6>
 </div>

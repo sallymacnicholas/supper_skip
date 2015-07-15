@@ -11,7 +11,7 @@
   <h1><%= @item.description %></br><br></h1>
   <h4><%= @item.dollar_amount %></br></h4>
     <% if @item.active? %>
-      <%= button_to "Add to cart", cart_path(item_id: @item.id)%>
+      <%= button_to "Add to cart", cart_path(item_id: @item.id) %>
     <% end %>
 </div>
 </div>
