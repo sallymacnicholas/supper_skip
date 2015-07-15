@@ -2,7 +2,7 @@
   <ul class="nav nav-list">
     <h3 class="admin-panel-title">Admin Panel</h3>
     <hr />
-    <li><%= link_to "Dashboard", admin_path %></li>
+    <li><%= link_to "Dashboard", admin_restaurant_path(@restaurant) %></li>
     <li><%= link_to "Manage Items", admin_restaurant_items_path(@restaurant) %></li>
     <li><%= link_to "Manage Categories", admin_restaurant_categories_path(@restaurant) %></li>
     <li><%= link_to "View Users", admin_users_path %></li>

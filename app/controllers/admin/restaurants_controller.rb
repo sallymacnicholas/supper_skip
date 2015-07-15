@@ -3,8 +3,11 @@ class Admin::RestaurantsController < ApplicationController
   before_action :authorize_owner
   
   def show
-    @restaurant = Restaurant.find_by_slug(params[:slug])
-    @categories = @restaurant.categories
+    if params[:status].nil? || params[:status] == "all"
+      @orders = current_restaurant.orders
+    else
+      @orders = current_restaurant.orders.where(status: params[:status])
+    end
   end
   
   def edit
@@ -18,8 +21,8 @@ class Admin::RestaurantsController < ApplicationController
       flash[:warning].now = "There was a problem updating your restaurant"
     end
   end
-  
-private
+
+  private
   def restaurant_params
     params.require(:restaurant).permit(:name, :description, :slug)
   end

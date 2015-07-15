@@ -1,0 +1,25 @@
+<table>
+  <tr>
+    <th>Summary by Status</th>
+  </tr>
+  <tr>
+    <td>Paid</td>
+    <td>Ready For Preparation</td>
+    <td>Cancelled</td>
+    <td>In Preparation</td>
+    <td>Ready For Delivery</td>
+    <td>Out For Delivery</td>
+    <td>Completed</td>
+    <td>Total</td>
+  </tr>
+  <tr>
+    <td><%= Order.all.paid.count %></td>
+    <td><%= Order.all.ready_for_preparation.count %></td>
+    <td><%= Order.all.cancelled.count %>
+    <td><%= Order.all.in_preparation.count %></td>
+    <td><%= Order.all.ready_for_delivery.count %></td>
+    <td><%= Order.all.out_for_delivery.count %></td>
+    <td><%= Order.all.completed.count %></td>
+    <td><%= Order.all.count %></td>
+  </tr>
+</table>
