@@ -42,7 +42,10 @@ describe "user adds to cart and", type: :feature do
     
     first(:button, "Add to cart").click
     
-    expect(current_path).to eq(cart_path)
+    expect(current_path).to eq(restaurant_path(restaurant_one))
+    expect(page).to have_content("Added to your cart!!")
+    
+    visit cart_path
     expect(page).to have_content("Jorge's Pita Bar")
     expect(page).to have_content("Falafel pita")
     expect(page).to have_content("$11.00")
@@ -54,7 +57,8 @@ describe "user adds to cart and", type: :feature do
     first(:button, "Add to cart").click
     visit restaurant_path(restaurant_two)
     first(:button, "Add to cart").click
-
+    
+    visit cart_path
     expect(current_path).to eq(cart_path)
     expect(page).to have_content("Jorge's Pita Bar")
     expect(page).to have_content("Falafel pita")

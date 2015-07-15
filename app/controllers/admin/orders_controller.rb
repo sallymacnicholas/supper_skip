@@ -1,17 +1,31 @@
 class Admin::OrdersController < ApplicationController
-  before_action :authorize
+  before_action :current_restaurant
+  before_action :authorize_owner
+
   def filter
     if params[:status] == "all"
-      @orders = Order.all
+      @orders = current_restaurant.orders.all
     else
-      @orders = Order.where("status = ?", params[:status])
+      @orders = current_restaurant.orders.where("status = ?", params[:status])
     end
-    redirect_to admin_path(status: params[:status])
+    redirect_to admin_restaurant_path(slug: current_restaurant.slug, status: params[:status])
   end
 
   def update
-    order = Order.find(params[:id])
+    order = current_restaurant.orders.find(params[:id])
     order.update_attributes(status: params[:new_status])
-    redirect_to admin_path
+    redirect_to admin_restaurant_path(slug: current_restaurant.slug, status: params[:status])
+  end
+  
+  private
+
+  def current_restaurant
+    @restaurant = current_user.restaurant
+  end
+
+  def authorize_owner
+    unless current_restaurant == Restaurant.find_by_slug(params[:restaurant_slug])
+      redirect_to root_path
+    end
   end
 end
