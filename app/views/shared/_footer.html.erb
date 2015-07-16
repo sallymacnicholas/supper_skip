@@ -1,4 +1,12 @@
 <div id="border" class="row footer-section">
+    <div class="social-icons">
+    <h5><i class="fa fa-github"></i> GitHub</h5>
+    <h5><i class="fa fa-facebook-official"></i> Facebook</h5>
+    <h5><i class="fa fa-twitter"></i> Twitter</h5>
+    <h5><i class="fa fa-pinterest-p"></i> Pinterest</h5>
+    <h5><i class="fa fa-instagram"></i> Instagram</h5>
+    </div>
+
     <% if current_user %>
     <h3><%= button_to "Open a Restaurant", new_restaurant_path, :method => :get  %></h3>
     <% else %>
