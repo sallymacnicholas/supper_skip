@@ -23,14 +23,14 @@ describe "the user" do
     expect(current_path).to eq(root_path)
   end
 
-  it "can see a signup button" do
+  xit "can see a signup button" do
     visit root_path
     click_link("Login")
 
     expect(page).to have_link("here")
   end
 
-  it "can create an account" do
+  xit "can create an account" do
     user = build(:user)
 
     visit root_path
@@ -46,7 +46,7 @@ describe "the user" do
     expect(page).to have_content("Account successfully created. ")
   end
 
-  it "cannot create an account with invalid credentials" do
+  xit "cannot create an account with invalid credentials" do
     user = create(:user)
 
     visit root_path
