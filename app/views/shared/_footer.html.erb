@@ -1,8 +1,28 @@
 <div id="border" class="row footer-section">
+<div class="footer-info col-md-3" id="footer-info">
     <% if current_user %>
     <h3><%= button_to "Open a Restaurant", new_restaurant_path, :method => :get  %></h3>
     <% else %>
     <h6>To Open a Restaurant <%= link_to "Create Account!", new_user_path %></h6>
     <% end %><br>
-<h6>Site Created By: Chelsea Worrel, Morgan Miller and Sally MacNicholas 2015</h6>
+</div>
+    <div class="created-by col-md-3" id="padding">
+      <h5>Site Created By:</h5>
+        <h5>Chelsea Worrel, Morgan Miller and Sally MacNicholas 2015</h5>
+
+    </div>
+    <div class="github col-md-3" id="padding-2">
+      <h5><a href="https://github.com/chelseaworrel">Chelsea's GitHub</a><br><br></h5>
+      <h5><a href="https://github.com/morganmiller">Morgans's GitHub</a><br><br><h5>
+      <h5><a href="https://github.com/sallymacnicholas">Sally's GitHub</a><br><br><h5>
+    </div>
+
+<div class="social-icons col-md-3" id="social-icons">
+  <h5><i class="fa fa-github"></i> GitHub</h5>
+  <h5><i class="fa fa-facebook-official"></i> Facebook</h5>
+  <h5><i class="fa fa-twitter"></i> Twitter</h5>
+  <h5><i class="fa fa-pinterest-p"></i> Pinterest</h5>
+  <h5><i class="fa fa-instagram"></i> Instagram</h5>
+</div>
+
 </div>
