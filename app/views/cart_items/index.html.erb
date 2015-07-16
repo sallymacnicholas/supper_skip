@@ -8,18 +8,26 @@
       <div class="category-box row" >
         <h3><%= restaurant.name %></h3>
         <% items.each do |item, quantity| %>
+          <div class="cart-items">
           <%= item.title %>, <%= item.description %>  Subtotal: <%= item.dollar_amount(quantity * item.unit_price) %> Quantity: <%= quantity %>
+        </div><br>
+          <div class="cart-buttons">
           <%= button_to "Add one more!", update_item_path(item_id: item.id) %>
           <%= button_to  "Remove from Cart", remove_item_path(item_id: item.id), data: { confirm: 'Are you sure you want to remove this item from your cart?' } %>
+        </div><br>
         <% end %>
       </div>
       <% end %>
     </div>
-    Total: <%= number_to_currency(@cart.total_cost / 100) %>
-    <% if current_user %>
-      <%= button_to "Checkout", orders_path(user_id: current_user.id)%>
-    <% else %>
-      <%= button_to "Checkout", login_for_cart_path, method: :get %>
-    <% end %>
+    <div class="cart-total">
+        Total: <%= number_to_currency(@cart.total_cost / 100) %>
+    </div><br>
+    <div class="cart-checkout">
+      <% if current_user %>
+        <%= button_to "Checkout", orders_path(user_id: current_user.id)%>
+        <% else %>
+        <%= button_to "Checkout", login_for_cart_path, method: :get %>
+        <% end %>
+    </div>
   </div>
 <% end %>

@@ -33,11 +33,9 @@
           <div class="item-box-inner">
             <h4 class="item-title"><%= link_to item.title, restaurant_item_path(restaurant_slug: item.restaurant.slug, id: item.id) %></h4>
             <br />
-            <%= image_tag item.image.url(:menu_list), class: "menu_list_img" %>
-            <br />
-            <br />
-            <div class="item-desc"><%= item.description %></div></br>
-            <%= item.dollar_amount %></br>
+            <%= image_tag item.image.url(:menu_list), class: "menu_list_img" %><br><br>
+            <div class="item-desc"><%= item.description %></div>
+            <%= item.dollar_amount %><br><br>
             <%= button_to "Add to cart", cart_path(item_id: item.id) %>
           </div>
         </div>
