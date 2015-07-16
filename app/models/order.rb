@@ -84,4 +84,20 @@ class Order < ActiveRecord::Base
       self.status = "cancelled"
     end
   end
+  
+  def ready_for_prep?
+    status == "ready for preparation"
+  end
+  
+  def in_prep?
+    status == "in preparation"
+  end
+
+  def ready_for_delivery?
+    status == "ready for delivery"
+  end
+
+  def out_for_delivery?
+    status == "out for delivery"
+  end
 end
