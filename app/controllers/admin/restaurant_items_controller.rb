@@ -44,7 +44,7 @@ private
   end
 
   def authorize_owner
-    unless current_restaurant == Restaurant.find_by_slug(params[:restaurant_slug])
+    unless current_user.restaurant == @restaurant
       redirect_to root_path
     end
   end
