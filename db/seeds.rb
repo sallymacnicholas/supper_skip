@@ -192,7 +192,7 @@ class NewSeed
   def generate_user_restaurant_roles
     UserRestaurantRole.create!(user_id: 6, restaurant_id: 1, role_id: 1)
     UserRestaurantRole.create(user_id: 7, restaurant_id: 5, role_id: 1)
-    UserRestaurantRole.create(user_id: 8, restaurant_id: 2ra, role_id: 2)
+    UserRestaurantRole.create(user_id: 8, restaurant_id: 2, role_id: 2)
   end
 
   def change_order_statuses
