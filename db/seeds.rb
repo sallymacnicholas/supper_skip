@@ -2,7 +2,7 @@ require 'faker'
 
 class NewSeed
   attr_reader :users, :owners, :restaurants
-  
+
   def initialize
     generate_users
     generate_restaurants
@@ -10,6 +10,7 @@ class NewSeed
     generate_items
     generate_order
     generate_roles
+    generate_user_restaurant_roles
   end
 
   def generate_users
@@ -27,9 +28,19 @@ class NewSeed
           email:                 "cdub@gmail.com",
           password:              "password",
           password_confirmation: "password",
-          display_name:          "C Dub" }
+          display_name:          "C Dub" },
+        { full_name:             "Jorge Tellez",
+          email:                 "jorge@isamexican.com",
+          password:              "password",
+          password_confirmation: "password",
+          display_name:          "jorgethemexican" },
+        { full_name:             "Horace William",
+          email:                 "horace@isahipster.com",
+          password:              "password",
+          password_confirmation: "password",
+          display_name:          "horacethehipster" }
       ])
-    
+
     @users = User.create!([
         { full_name:             "Josh Cheek",
           email:                 "demo+josh@jumpstartlab.com",
@@ -44,32 +55,34 @@ class NewSeed
           password:              "password",
           password_confirmation: "password",
           display_name:          "j3" },
-        { full_name:             "Jorge Tellez",
-          email:                 "demo+jorge@jumpstartlab.com",
+        { full_name:             "Josh Mejia",
+          email:                 "demo+mejia@jumpstartlab.com",
           password:              "password",
           password_confirmation: "password",
-          display_name:          "novohispano" }
+          display_name:          "mejia" }
       ])
   end
-  
+
   def random_user
     @users.sample
   end
-  
+
   def generate_restaurants
     unowned_restaurants = Restaurant.create!([
       { name: "Morgan's Munchies", description: "Not just for stoners.", slug: "morgans-munchies" },
       { name: "Sally's Sushi", description: "The best food from under the sea.", slug: "sallys-sushi" },
-      { name: "Chelsea's Cupcakes", description: "A strictly G-rated bakery.", slug: "chelseas-cupcakes" }
+      { name: "Chelsea's Cupcakes", description: "A strictly G-rated bakery.", slug: "chelseas-cupcakes" },
+      { name: "Jorge's Jawesome Jam ", description: "HOT HOT HOT!", slug: "hot-hot-hot" },
+      { name: "Horace's Hipster House", description: "The best hipster food around", slug: "hipster-house" }
     ])
-    
+
     restaurants = unowned_restaurants.zip(owners)
     restaurants.each do |restaurant, owner|
       owner.restaurant = restaurant
     end
     @restaurants = restaurants.map { |r, o| r }
   end
-  
+
   def generate_categories
     categories = [Category.create([
         { name: "Chips" },
@@ -88,14 +101,26 @@ class NewSeed
           { name: "Mini Cupcakes" },
           { name: "Cake Pops" },
           { name: "Gluten Free" }
+        ]),
+      Category.create([
+          { name: "Strawberry" },
+          { name: "Blackberry" },
+          { name: "Peanut Butter" },
+          { name: "Boisenberry" }
+        ]),
+      Category.create([
+          { name: "Beer" },
+          { name: "Vegan" },
+          { name: "Vegetarian" },
+          { name: "Low Carb" }
         ])
       ]
-    
+
     @restaurants.each_with_index do |restaurant, i|
       restaurant.categories << categories[i]
     end
   end
-  
+
   def generate_items
     10.times do
       item = Item.new(title: Faker::Commerce.product_name, description: Faker::Lorem.sentence, unit_price: 5000, categories: @restaurants[0].categories.sample(2), active: true)
@@ -106,7 +131,7 @@ class NewSeed
 
     10.times do
       item = Item.new(title: Faker::Commerce.product_name, description: Faker::Lorem.sentence, unit_price: 5000, categories: @restaurants[1].categories.sample(2), active: true)
-      @restaurants[1].items << item 
+      @restaurants[1].items << item
       item.image = File.open("#{Rails.root}/app/assets/images/sushi.jpg")
       item.save
     end
@@ -115,6 +140,20 @@ class NewSeed
       item = Item.new(title: Faker::Commerce.product_name, description: Faker::Lorem.sentence, unit_price: 5000, categories: @restaurants[2].categories.sample(2), active: true)
       @restaurants[2].items << item
       item.image = File.open("#{Rails.root}/app/assets/images/cupcake.jpg")
+      item.save
+    end
+
+    10.times do
+      item = Item.new(title: Faker::Commerce.product_name, description: Faker::Lorem.sentence, unit_price: 5000, categories: @restaurants[3].categories.sample(2), active: true)
+      @restaurants[3].items << item
+      item.image = File.open("#{Rails.root}/app/assets/images/IMG_3775.jpg")
+      item.save
+    end
+
+    10.times do
+      item = Item.new(title: Faker::Commerce.product_name, description: Faker::Lorem.sentence, unit_price: 5000, categories: @restaurants[4r].categories.sample(2), active: true)
+      @restaurants[4].items << item
+      item.image = File.open("#{Rails.root}/app/assets/images/horace.jpg")
       item.save
     end
   end
@@ -144,10 +183,16 @@ class NewSeed
     end
     change_order_statuses
   end
-  
+
   def generate_roles
     Role.create!(name: "cook")
     Role.create!(name: "delivery")
+  end
+
+  def generate_user_restaurant_roles
+    UserRestaurantRole.create!(user_id: 6, restaurant_id: 1, role_id: 1)
+    UserRestaurantRole.create(user_id: 7, restaurant_id: 5, role_id: 1)
+    UserRestaurantRole.create(user_id: 8, restaurant_id: 2ra, role_id: 2)
   end
 
   def change_order_statuses
