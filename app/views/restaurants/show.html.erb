@@ -3,14 +3,23 @@
     <div id="floater">
       <h2><%= @restaurant.name %></h2>
       <div class="well sidebar-nav" >
-        <ul class="nav nav-list">
-          <% @categories.each do |category| %>
-            <li><%= link_to category.name, restaurant_path(anchor: category.name) %></li>
-          <% end %>
-        </ul>
+      <ul class="nav nav-list">
+        <% @categories.each do |category| %>
+          <li><%= link_to category.name, restaurant_path(anchor: category.name) %></li>
+        <% end %>
+      </ul>
       </div>
-    </div>
-  </div>
+        <% if current_user.has_restaurant_role?(@restaurant) %>
+        <h2>For staff</h2>
+         <div class="well sidebar-nav" >
+           <ul class="nav nav-list">
+             <li><%= link_to "View Restaurant Orders", admin_restaurant_path(@restaurant) %></li>
+           </ul>
+         </div>
+       <% end %>
+     </div>
+</div>
+
 <div class="col-lg-9  category-items">
   <% @categories.each do |category| %>
     <a name="<%= category.name %>"></a>
