@@ -1,4 +1,9 @@
-FactoryGirl.define do  factory :user_restaurant_role do
+FactoryGirl.define do  factory :notification do
+    email "MyString"
+restaurant_id 1
+role_id 1
+  end
+  factory :user_restaurant_role do
     user nil
 role nil
 restaurant nil

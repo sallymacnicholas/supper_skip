@@ -78,4 +78,14 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+  ActionMailer::Base.smtp_settings = {
+     address: 'smtp.mandrillapp.com',
+     port: '587',
+     domain: 'eatsy.herokuapp.com/',
+     user_name: 'dmacnicholas@gmail.com',
+     password: '4L64CmcmZCW7VdqmVG6NnA',
+     authentication: 'plain',
+     enable_starttls_auto: true
+ }
+ ActionMailer::Base.delivery_method = :smtp
 end
