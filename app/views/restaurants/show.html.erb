@@ -9,7 +9,7 @@
         <% end %>
       </ul>
       </div>
-        <% if current_user.has_restaurant_role?(@restaurant) %>
+        <% if current_user && current_user.has_restaurant_role?(@restaurant) %>
         <h2>For staff</h2>
          <div class="well sidebar-nav" >
            <ul class="nav nav-list">
