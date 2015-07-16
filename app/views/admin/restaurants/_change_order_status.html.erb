@@ -1,0 +1,11 @@
+<% if current_user.is_cook?(@restaurant) && order.ready_for_prep? %>
+  <td><div class="btn-group"><%= link_to "Prepare order", admin_restaurant_update_order_path(restaurant_slug: @restaurant.slug, new_status: "in preparation", id: order.id), method: :put %></div></td>
+<% elsif current_user.is_cook?(@restaurant) && order.in_prep? %>
+  <td><div class="btn-group"><%= link_to "Send to delivery", admin_restaurant_update_order_path(restaurant_slug: @restaurant.slug, new_status: "ready for delivery", id: order.id), method: :put %></div></td>
+<% elsif current_user.is_delivery?(@restaurant) && order.ready_for_delivery? %>
+  <td><div class="btn-group"><%= link_to "Deliver order", admin_restaurant_update_order_path(restaurant_slug: @restaurant.slug, new_status: "out for delivery", id: order.id), method: :put %></div></td>
+<% elsif current_user.is_delivery?(@restaurant) && order.out_for_delivery? %>
+  <td><div class="btn-group"><%= link_to "Mark as delivered", admin_restaurant_update_order_path(restaurant_slug: @restaurant.slug, new_status: "completed", id: order.id), method: :put %></div></td>
+<% else %>
+  <td></td>
+<% end %>

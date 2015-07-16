@@ -1,6 +1,6 @@
 class Admin::OrdersController < ApplicationController
   before_action :current_restaurant
-  before_action :authorize_owner
+  before_action :authorize_staff
 
   def filter
     if params[:status] == "all"
@@ -20,11 +20,11 @@ class Admin::OrdersController < ApplicationController
   private
 
   def current_restaurant
-    @restaurant = current_user.restaurant
+    Restaurant.find_by_slug(params[:restaurant_slug])
   end
 
-  def authorize_owner
-    unless current_restaurant == Restaurant.find_by_slug(params[:restaurant_slug])
+  def authorize_staff
+    unless current_user.is_owner?(current_restaurant) || current_user.has_restaurant_role?(current_restaurant)
       redirect_to root_path
     end
   end
