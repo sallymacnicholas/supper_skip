@@ -11,17 +11,16 @@ class Admin::UserRestaurantRolesController < ApplicationController
   end
 
   def create
-    # binding.pry
    @user = User.find_by(email: params[:email])
    role = params[:roles].to_i
     if @user.nil?
        notification = Notification.find_by(email: params[:email])
        Notification.create(email: params[:email], restaurant_id: @restaurant.id, role_id: role) unless notification
-       NotificationMailer.notification_email(params[:email], current_user, @restaurant).deliver
+       NotificationMailer.notification_email(params[:email], current_user, @restaurant).deliver unless notification
        if notification
          flash[:notice] = "Email has already been sent!"
-      else
-      flash[:notice] = "Email sent!"
+       else
+         flash[:notice] = "Email sent!"
        end
        redirect_to admin_restaurant_user_restaurant_roles_path(@restaurant)
      else
