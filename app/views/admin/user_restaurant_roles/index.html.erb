@@ -1,0 +1,9 @@
+<%= link_to "Add Staff Member", new_admin_restaurant_user_restaurant_role_path(@restaurant) %>
+
+<h2> Staff </h2>
+<% @staff.each do |staff| %>
+<li><%= staff.full_name %> :</li>
+ <% staff.roles.each do |role| %>
+    <li><%= role.name %></li>
+ <% end %><br>
+<% end %>

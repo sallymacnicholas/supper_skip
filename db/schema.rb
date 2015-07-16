@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150714004458) do
+ActiveRecord::Schema.define(version: 20150715164838) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -110,6 +110,24 @@ ActiveRecord::Schema.define(version: 20150714004458) do
 
   add_index "restaurants", ["user_id"], name: "index_restaurants_on_user_id", using: :btree
 
+  create_table "roles", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "user_restaurant_roles", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "role_id"
+    t.integer  "restaurant_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "user_restaurant_roles", ["restaurant_id"], name: "index_user_restaurant_roles_on_restaurant_id", using: :btree
+  add_index "user_restaurant_roles", ["role_id"], name: "index_user_restaurant_roles_on_role_id", using: :btree
+  add_index "user_restaurant_roles", ["user_id"], name: "index_user_restaurant_roles_on_user_id", using: :btree
+
   create_table "user_transactions", force: :cascade do |t|
     t.integer  "order_total"
     t.integer  "user_id"
@@ -138,5 +156,8 @@ ActiveRecord::Schema.define(version: 20150714004458) do
   add_foreign_key "orders", "user_transactions"
   add_foreign_key "orders", "users"
   add_foreign_key "restaurants", "users"
+  add_foreign_key "user_restaurant_roles", "restaurants"
+  add_foreign_key "user_restaurant_roles", "roles"
+  add_foreign_key "user_restaurant_roles", "users"
   add_foreign_key "user_transactions", "users"
 end
