@@ -18,6 +18,11 @@ class UsersController < ApplicationController
       flash[:success] = "Account successfully created. You are logged in!"
       redirect_to root_path
     end
+    notification = Notification.find_by(email: user_params[:email])
+    if notification
+      UserRestaurantRole.create(user_id:user.id, restaurant_id: notification.restaurant_id, role_id: notification.role_id)
+      notification.destroy
+    end
   end
 
   private

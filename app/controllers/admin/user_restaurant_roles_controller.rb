@@ -11,20 +11,23 @@ class Admin::UserRestaurantRolesController < ApplicationController
   end
 
   def create
-    # binding.pry
    @user = User.find_by(email: params[:email])
    role = params[:roles].to_i
     if @user.nil?
-      #  notification = Notification.find_by(email: params[:email])
-      #  Notification.create(email: params[:email], restaurant_id: @restaurant.id, role_id: role) unless notification
-
-       flash[:notice] = "Email sent!"
+       notification = Notification.find_by(email: params[:email])
+       Notification.create(email: params[:email], restaurant_id: @restaurant.id, role_id: role) unless notification
+       NotificationMailer.notification_email(params[:email], current_user, @restaurant).deliver unless notification
+       if notification
+         flash[:notice] = "Email has already been sent!"
+       else
+         flash[:notice] = "Email sent!"
+       end
        redirect_to admin_restaurant_user_restaurant_roles_path(@restaurant)
-       NotificationMailer.notification_email(params[:email], current_user, @restaurant).deliver
      else
        user_role = UserRestaurantRole.new(user_id: @user.id, role_id: params[:roles].to_i, restaurant_id: @restaurant.id )
        if user_role.save
          flash[:message] = "You have successfully added #{@user.full_name} as a '#{@user.roles.last.name}'"
+         NotificationMailer.confirmation_email(params[:email], @restaurant).deliver
          redirect_to admin_restaurant_user_restaurant_roles_path(@restaurant)
        else
          flash[:notice] = "You're new staff was not saved!"
