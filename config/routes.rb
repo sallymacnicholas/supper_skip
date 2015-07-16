@@ -21,8 +21,6 @@ Rails.application.routes.draw do
   get "/orders/:id" => "user_transactions#show", as: "user_order"
 
   namespace :admin do
-    get "/users" => "users#index"
-    get "/users/:id" => "users#show", as: "show_user"
     resources :restaurants, only: [:show, :edit, :update], param: :slug do
       resources :categories, controller: "restaurant_categories"
       resources :items, controller: "restaurant_items"

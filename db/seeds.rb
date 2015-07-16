@@ -451,6 +451,7 @@ class NewSeed
     generate_categories
     generate_items
     generate_order
+    generate_roles
   end
 
   def generate_users
@@ -583,6 +584,11 @@ class NewSeed
       cart = Cart.new(session_cart)
       OrderCreator.execute_order(cart, random_user)
     end
+  end
+  
+  def generate_roles
+    Role.create!(name: "cook")
+    Role.create!(name: "delivery")
   end
 end
 
