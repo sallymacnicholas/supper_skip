@@ -1,3 +1,5 @@
+require 'json'
+
 module OrderCreator
 
   def self.execute_order(cart, user)
@@ -22,6 +24,7 @@ module OrderCreator
   end
   
   def self.create_user_transaction(cart, user)
-    UserTransaction.create!(order_total: cart.total_cost, user_id: user.id)
+    order_cart = cart.cart_items.to_json
+    UserTransaction.create!(order_total: cart.total_cost, cart: order_cart, user_id: user.id)
   end
 end

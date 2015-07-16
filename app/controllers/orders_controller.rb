@@ -6,6 +6,7 @@ class OrdersController < ApplicationController
   end
 
   def create
+    check_for_new_cart
     OrderCreator.execute_order(@cart, current_user)
     @cart.clear
     session[:cart] = {}
@@ -21,5 +22,13 @@ class OrdersController < ApplicationController
       flash[:warning] = "Your order cannot be cancelled at this time."
     end
     redirect_to user_order_path(@order.user_transaction)
+  end
+  
+  private
+  
+  def check_for_new_cart
+    if params[:cart]
+      @cart = Cart.new(params[:cart])
+    end
   end
 end

@@ -450,6 +450,7 @@ class NewSeed
     generate_restaurants
     generate_categories
     generate_items
+    generate_order
   end
 
   def generate_users
@@ -490,6 +491,10 @@ class NewSeed
           password_confirmation: "password",
           display_name:          "novohispano" }
       ])
+  end
+  
+  def random_user
+    @users.sample
   end
   
   def generate_restaurants
@@ -537,21 +542,21 @@ class NewSeed
       item = Item.new(title: Faker::Commerce.product_name, description: Faker::Lorem.sentence, unit_price: 5000, categories: @restaurants[0].categories.sample(2), active: true)
       @restaurants[0].items << item
       item.image = File.open("#{Rails.root}/app/assets/images/default.png")
-      item.save!
+      item.save
     end
 
     10.times do
       item = Item.new(title: Faker::Commerce.product_name, description: Faker::Lorem.sentence, unit_price: 5000, categories: @restaurants[1].categories.sample(2), active: true)
       @restaurants[1].items << item 
       item.image = File.open("#{Rails.root}/app/assets/images/default.png")
-      item.save!
+      item.save
     end
 
     10.times do
       item = Item.new(title: Faker::Commerce.product_name, description: Faker::Lorem.sentence, unit_price: 5000, categories: @restaurants[2].categories.sample(2), active: true)
       @restaurants[2].items << item
       item.image = File.open("#{Rails.root}/app/assets/images/default.png")
-      item.save!
+      item.save
     end
   end
 

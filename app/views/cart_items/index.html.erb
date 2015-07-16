@@ -17,7 +17,7 @@
     </div>
     Total: <%= number_to_currency(@cart.total_cost / 100) %>
     <% if current_user %>
-      <%= button_to "Checkout", orders_path(user_id: current_user.id, cart: @cart)%>
+      <%= button_to "Checkout", orders_path(user_id: current_user.id)%>
     <% else %>
       <%= button_to "Checkout", login_for_cart_path, method: :get %>
     <% end %>
