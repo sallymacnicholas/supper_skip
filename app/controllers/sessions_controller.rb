@@ -8,11 +8,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    if Admin.find_by(email: params[:session][:email])
-      authenticate_admin(Admin.find_by(email: params[:session][:email]))
-    else
-      authenticate_user(User.find_by(email: params[:session][:email]))
-    end
+    authenticate_user(User.find_by(email: params[:session][:email]))
   end
 
   def destroy
@@ -22,19 +18,7 @@ class SessionsController < ApplicationController
   end
 
   private
-
-  def authenticate_admin(admin)
-    if Admin.find_by(email: params[:session][:email]).
-        authenticate(params[:session][:password])
-      session[:user_id] = admin.id
-      session[:admin] = true
-      redirect_to admin_path
-    else
-      flash[:errors] = "Invalid Login"
-      redirect_to login_path
-    end
-  end
-
+  
   def authenticate_user(user)
     if user && user.authenticate(params[:session][:password])
       session[:user_id] = user.id
