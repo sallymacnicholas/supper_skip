@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html>
+<link href='https://fonts.googleapis.com/css?family=Bitter' rel='stylesheet' type='text/css'>
 <head>
   <title id="title">Eatsy</title>
   <%= favicon_link_tag 'favicon.ico' %>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <link href='//fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Bitter' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -35,8 +37,8 @@
   <% end %>
 <div class="main-body container">
   <% flash.each do |name, message| %>
-  <div class="<%= bootstrap_class_for(name) %>">
-    <%= message%>
+  <div class="<%= bootstrap_class_for(name) %>" style="text-align: center;">
+    <h1><%= message%></h1>
   </div>
   <% end %>
 
