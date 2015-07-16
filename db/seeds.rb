@@ -554,6 +554,31 @@ class NewSeed
       item.save!
     end
   end
+
+  def carts
+    [
+      { "1" => 2, "3" => 1, "4" => 1 },
+      { "2" => 2, "5" => 1 },
+      { "8" => 1, "6" => 1, "9" => 3 },
+      { "5" => 5 },
+      { "5" => 1, "18" => 1 },
+      { "10" => 1, "12" => 1, "13" => 2, "11" => 3 },
+      { "1" => 4, "9" => 1},
+      { "17" => 2, "2" => 1},
+      { "3" => 1, "4" => 1, "5" => 1, "6" => 1},
+      { "18" => 2},
+      { "7" => 1, "14" => 1, "20" => 4},
+      { "3" => 1 },
+      { "5" => 1, "15" => 5 }
+    ]
+  end
+
+  def generate_order
+    carts.each do |session_cart|
+      cart = Cart.new(session_cart)
+      OrderCreator.execute_order(cart, random_user)
+    end
+  end
 end
 
 NewSeed.new
