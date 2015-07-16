@@ -4,6 +4,7 @@
     <thead>
     <tr>
       <th>Date</th>
+      <th>Was it delicious?</th>
       <th>Amount</th>
     </tr>
     </thead>
@@ -14,6 +15,7 @@
       <% @transactions.each do |order| %>
         <tr>
           <td><%= link_to order.formatted_created_at, user_order_path(order) %></td>
+          <td><%= button_to "Order it again!", orders_path(user_id: current_user.id, cart: order.cart) %></td>
           <td><%= order.total_dollar_amount %></td>
         </tr>
       <% end %>

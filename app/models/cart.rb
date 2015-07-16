@@ -27,11 +27,11 @@ class Cart
   end
   
   def all_items
-    cart_items.map { |item, quantity| [Item.find(item), quantity] }.to_h
+    cart_items.map { |item, quantity| [Item.find(item), quantity.to_i] }.to_h
   end
   
   def total_cost
-    all_items.map { |item, quantity| item.unit_price * quantity }.sum
+    all_items.map { |item, quantity| item.unit_price * quantity.to_i }.sum
   end
   
   def items_by_restaurant
