@@ -46,5 +46,4 @@ describe "user looking for order suggestions", type: :feature do
     expect(current_path).to eq(user_order_path(user.most_recent_transaction))
     expect(page).to have_content("Rainbow Roll")
   end
-  
 end

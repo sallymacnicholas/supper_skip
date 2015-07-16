@@ -6,15 +6,35 @@
   </div>
 
 <div id="listing-right-column" class="col-md-6">
-<div id="listing-page-cart">
-<div id="listing-page-cart-inner">
-  <h1><%= @item.description %></br><br></h1>
-  <h4><%= @item.dollar_amount %></br></h4>
-    <% if @item.active? %>
-      <%= button_to "Add to cart", cart_path(item_id: @item.id) %>
-    <% end %>
+  <div id="listing-page-cart">
+    <div id="listing-page-cart-inner">
+      <h1><%= @item.description %></br><br></h1>
+      <h4><%= @item.dollar_amount %></br></h4>
+        <% if @item.active? %>
+          <%= button_to "Add to cart", cart_path(item_id: @item.id) %>
+        <% end %>
+    </div>
+  </div>
+
 </div>
 </div>
-</div>
-</div>
+  
+  <div class="row" id="featured-restaurants">
+    <div class="col-lg-8 col-lg-offset-2" id="static-header">
+      <h1>Recommended for you</h1><br>
+      <% @item.restaurant.frequently_ordered_items.each do |item|  %>
+        <div class="item-box col-md-4">
+          <div class="item-box-inner">
+            <h4 class="item-title"><%= link_to item.title, restaurant_item_path(restaurant_slug: item.restaurant.slug, id: item.id) %></h4>
+            <br />
+              <%= image_tag item.image.url(:menu_list), class: "menu_list_img" %>
+            <br />
+            <br />
+            <div class="item-desc"><%= item.description %></div></br>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  
 </div>
