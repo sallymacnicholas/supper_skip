@@ -1,8 +1,10 @@
 <h2 class="admin-title">Owner Dashboard</h2>
 <div class="row">
-  <div class="col-lg-3">
-    <%= render 'admin/shared/owner_menu' %>
-  </div>
+  <% if current_user.is_owner?(@restaurant) %>
+    <div class="col-lg-3">
+      <%= render 'admin/shared/owner_menu' %>
+    </div>
+  <% end %>
   <div class="col-lg-9 well">
     <div class="dash-section clearfix summary">
       <h3 class="admin-panel-title">Order Summary</h3>

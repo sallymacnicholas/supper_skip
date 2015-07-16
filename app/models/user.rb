@@ -31,4 +31,20 @@ class User < ActiveRecord::Base
   def most_recent_transaction
     user_transactions.last
   end
+  
+  def has_restaurant_role?(restaurant)
+    user_restaurant_roles.find_by(restaurant_id: restaurant.id)
+  end
+  
+  def is_owner?(restaurant)
+    self.restaurant == restaurant
+  end
+  
+  def is_cook?(restaurant)
+    has_restaurant_role?(restaurant) && roles.find_by(name: "cook")
+  end
+  
+  def is_delivery?(restaurant)
+    has_restaurant_role?(restaurant) && roles.find_by(name: "delivery")
+  end
 end

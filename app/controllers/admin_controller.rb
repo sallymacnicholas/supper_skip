@@ -1,5 +1,6 @@
 class AdminController < ApplicationController
-  before_action :authorize
+  before_action :authorize_staff
+  
   def index
     if params[:status].nil? || params[:status] == "all"
       @orders = Order.sorted
