@@ -100,21 +100,21 @@ class NewSeed
     10.times do
       item = Item.new(title: Faker::Commerce.product_name, description: Faker::Lorem.sentence, unit_price: 5000, categories: @restaurants[0].categories.sample(2), active: true)
       @restaurants[0].items << item
-      item.image = File.open("#{Rails.root}/app/assets/images/default.png")
+      item.image = File.open("#{Rails.root}/app/assets/images/donuts.jpg")
       item.save
     end
 
     10.times do
       item = Item.new(title: Faker::Commerce.product_name, description: Faker::Lorem.sentence, unit_price: 5000, categories: @restaurants[1].categories.sample(2), active: true)
       @restaurants[1].items << item 
-      item.image = File.open("#{Rails.root}/app/assets/images/default.png")
+      item.image = File.open("#{Rails.root}/app/assets/images/sushi.jpg")
       item.save
     end
 
     10.times do
       item = Item.new(title: Faker::Commerce.product_name, description: Faker::Lorem.sentence, unit_price: 5000, categories: @restaurants[2].categories.sample(2), active: true)
       @restaurants[2].items << item
-      item.image = File.open("#{Rails.root}/app/assets/images/default.png")
+      item.image = File.open("#{Rails.root}/app/assets/images/cupcake.jpg")
       item.save
     end
   end
