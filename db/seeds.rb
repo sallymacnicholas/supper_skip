@@ -151,7 +151,7 @@ class NewSeed
     end
 
     10.times do
-      item = Item.new(title: Faker::Commerce.product_name, description: Faker::Lorem.sentence, unit_price: 5000, categories: @restaurants[4r].categories.sample(2), active: true)
+      item = Item.new(title: Faker::Commerce.product_name, description: Faker::Lorem.sentence, unit_price: 5000, categories: @restaurants[4].categories.sample(2), active: true)
       @restaurants[4].items << item
       item.image = File.open("#{Rails.root}/app/assets/images/horace.jpg")
       item.save
