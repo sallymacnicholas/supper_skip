@@ -1,9 +1,3 @@
-# Implement simple recommendations including:
-# 
-# The ability to easily see your last order and add the same items to the current order
-# When browsing an item, recommend 3 other items from that store that were ordered by customers who also ordered the item I'm viewing
-# If 3 other items can't be found, pull the most popular overall items from that store
-
 require "spec_helper"
 
 describe "user looking for order suggestions", type: :feature do

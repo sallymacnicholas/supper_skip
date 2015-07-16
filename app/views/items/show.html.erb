@@ -5,18 +5,17 @@
 <%= image_tag @item.image.url(:item_list), class: "item_list_img" %>
   </div>
 
-<div id="listing-right-column" class="col-md-6">
-  <div id="listing-page-cart">
-    <div id="listing-page-cart-inner">
-      <h1><%= @item.description %></br><br></h1>
-      <h4><%= @item.dollar_amount %></br></h4>
-        <% if @item.active? %>
-          <%= button_to "Add to cart", cart_path(item_id: @item.id) %>
-        <% end %>
+  <div id="listing-right-column" class="col-md-6">
+    <div id="listing-page-cart">
+      <div id="listing-page-cart-inner">
+        <h1><%= @item.description %></br><br></h1>
+        <h4><%= @item.dollar_amount %></br></h4>
+          <% if @item.active? %>
+            <%= button_to "Add to cart", cart_path(item_id: @item.id) %>
+          <% end %>
+      </div>
     </div>
   </div>
-
-</div>
 </div>
   
   <div class="row" id="featured-restaurants">
