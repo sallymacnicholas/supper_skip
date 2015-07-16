@@ -3,7 +3,6 @@ class Admin::RestaurantsController < ApplicationController
   before_action :authorize_staff
   
   def show
-    @restaurant = current_restaurant
     if params[:status].nil? || params[:status] == "all"
       @orders = current_restaurant.orders
     else
@@ -15,7 +14,6 @@ class Admin::RestaurantsController < ApplicationController
   end
   
   def update
-    @restaurant = current_restaurant
     @restaurant.update(restaurant_params)
     if @restaurant.save!
       redirect_to restaurant_path(@restaurant)
@@ -30,7 +28,7 @@ class Admin::RestaurantsController < ApplicationController
   end
 
   def current_restaurant
-    Restaurant.find_by_slug(params[:slug])
+    @restaurant = Restaurant.find_by_slug(params[:slug])
   end
 
   def authorize_staff
