@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 gem 'skylight'
 gem "paperclip", "~> 4.2"
 
+ruby "2.1.5"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
 # Use postgresql as the database for Active Record
