@@ -23,22 +23,6 @@ describe "the user" do
     expect(current_path).to eq(root_path)
   end
 
-  xit "redirects a user to the home page if trying to access admin dash" do
-    visit "/admin"
-
-    expect(current_path).to eq(root_path)
-  end
-
-  it "cannot log in with invalid credentials" do
-    visit root_path
-    click_link("Login")
-    fill_in "session[email]", with: ""
-    fill_in "session[password]", with: ""
-    click_link_or_button("Log in")
-
-    expect(page).to have_content("Invalid Login")
-  end
-
   it "can see a signup button" do
     visit root_path
     click_link("Login")
@@ -81,18 +65,6 @@ describe "the user" do
     expect(page).to have_content("display_name: is too short")
   end
 
-  it "can login" do
-    user = create(:user)
-
-    visit root_path
-    click_link_or_button("Login")
-    fill_in "session[email]", with: user.email
-    fill_in "session[password]", with: user.password
-    click_button("Log in")
-
-    expect(page).to have_content("Successfully logged in")
-  end
-
   it "sees a Logout button instead of Login " do
     mock_user
 
@@ -120,24 +92,6 @@ describe "the user" do
     click_link("Logout")
 
     expect(page).to have_content("Successfully logged out")
-  end
-
-  xit "shows a past orders link in the right nav bar" do
-    mock_user
-
-    visit root_path
-
-    within(".menu_right") do
-      expect(page).to have_link("Past Orders")
-    end
-  end
-
-  xit "gets redirected to home page if user tries to access admin page" do
-    mock_user
-
-    visit admin_path
-
-    expect(current_path).to eq(root_path)
   end
 
   describe "the past orders view" do
