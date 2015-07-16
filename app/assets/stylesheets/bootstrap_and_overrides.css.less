@@ -33,7 +33,7 @@
 // colors
 @dark_green: #44513B;
 @yellow_green: #0192B5;
-@teal_green: #66AC9B;
+@teal_green: #0192B5;
 @medium_green: #9DAF51;
 @link-color: #0192B5;
 @brown: #756A4E;
@@ -192,7 +192,7 @@ ul.nav.nav-list > li a {
 }
 
 div.item-box.col-md-3.item-inner-box > a {
-  color: #66AC9B !important;
+  color: #0192B5 !important;
 }
 
 h4 a {
@@ -200,7 +200,7 @@ h4 a {
 }
 
 .edit_categories a {
-  color: #66AC9B ;
+  color: #0192B5 ;
 }
 
 #floater > h2 {
@@ -258,14 +258,20 @@ input[type="submit"]:hover {
   font-family: 'Arial', serif;
   font-size: 16px;
 }
-
-.table-striped a {
-  color: #66AC9B;
+.table > tbody > tr > td {
+  border-top: 0px solid white;
 }
 
+.table > thead > tr > th {
+  border-bottom: 0px solid white;
+}
+
+.table-striped a {
+  color: #0192B5;
+}
 .table-striped>tbody>tr:nth-child(odd)>td,
 .table-striped>tbody>tr:nth-child(odd)>th {
-  background-color: #C3CEA3;
+  background-color: #FFF;
 }
 
 div > h3 {
@@ -279,13 +285,13 @@ div > h3 {
 }
 
 div .summary-stat-box {
-  background-color: #C3CEA3;
+  background-color: #FFF;
   margin: zero auto;
   text-align: center;
 }
 
 div .summary-stat-box table {
-  background-color: #C3CEA3;
+  background-color: #FFF;
   margin: 0 auto;
 
 }
