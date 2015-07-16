@@ -1,7 +1,11 @@
+<div class="col-md-4"></div>
+<div class="role-form col-md-4">
 <%= form_tag(admin_restaurant_user_restaurant_roles_path(@restaurant), method: :post) do %>
   <%= label_tag(:email, "Email:") %>
-  <%= text_field_tag(:email) %>
+  <%= text_field_tag(:email) %><br><br>
   <%= select_tag :roles,
-    options_from_collection_for_select(@roles, :id, :name) %>
+    options_from_collection_for_select(@roles, :id, :name) %><br><br>
   <%= submit_tag("Submit") %>
 <% end %>
+</div>
+<div class="col-md-4"></div>
