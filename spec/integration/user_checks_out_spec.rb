@@ -39,6 +39,7 @@ describe "user adds to cart and", type: :feature do
   it "can checkout with one item" do
     visit restaurant_path(restaurant_one)
     first(:button, "Add to cart").click
+    visit cart_path
     click_on "Checkout"
     
     expect(page).to have_content("Order Summary")
@@ -51,6 +52,7 @@ describe "user adds to cart and", type: :feature do
     first(:button, "Add to cart").click
     visit restaurant_path(restaurant_two)
     first(:button, "Add to cart").click
+    visit cart_path
     click_on "Checkout"
 
     expect(page).to have_content("Order Summary")
@@ -60,14 +62,11 @@ describe "user adds to cart and", type: :feature do
   end
 
   it "sees order summary divided by restaurant after checkout" do
-    #When user checks out:
-      #User transaction created with total from cart and a reference to many orders
-      #Many orders created with user transaction ID and a reference to many order items
-      #display_items from orders, method?
     visit restaurant_path(restaurant_one)
     first(:button, "Add to cart").click
     visit restaurant_path(restaurant_two)
     first(:button, "Add to cart").click
+    visit cart_path
     click_on "Checkout"
 
     expect(page).to have_content("Order Summary")

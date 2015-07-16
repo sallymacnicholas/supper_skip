@@ -36,7 +36,9 @@ Rails.application.routes.draw do
       resources :categories, controller: "restaurant_categories"
       resources :items, controller: "restaurant_items"
       resources :user_restaurant_roles, only: [:index, :create, :new], controller: "user_restaurant_roles"
-
+      post "/orders/:status" => "orders#filter", as: "filter_order"
+      put "/orders/:id" => "orders#update", as: "update_order"
+      get "/orders/:status" => "orders#filter", as: "order"
     end
   end
 

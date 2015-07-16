@@ -6,7 +6,9 @@
       <p id="restaurant-order">
         <h3><%= order.restaurant.name %></h3>
         <strong>Current status:</strong> <%= order.formatted_status %>
-        <%= link_to "Cancel Order", user_order_path(order), method: :delete %>
+        <% if order.cancelable? %>
+          <%= link_to "Cancel Order", user_order_path(order), method: :delete %>
+        <% end %>
       <div class="table-responsive">
       <table class="table table-striped">        
         <tr>

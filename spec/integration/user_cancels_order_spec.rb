@@ -4,11 +4,11 @@ describe "a user canceling an order", type: :feature do
   include Capybara::DSL
 
   let!(:user) { User.create!(full_name: "Josh Cheek",
-    email: "cheeky@gmail.com",
-    password: "password",
-    password_confirmation: "password")}
+                             email: "cheeky@gmail.com",
+                             password: "password",
+                             password_confirmation: "password")}
   let!(:restaurant) {Restaurant.create!(name: "Existential Eats",
-    description: "Our food fuels your existence. Literally.")}
+                                        description: "Our food fuels your existence. Literally.")}
   let!(:category) { Category.create!(name: "Philosophical Finger Foods")}
 
   before(:each) do
@@ -29,6 +29,7 @@ describe "a user canceling an order", type: :feature do
     visit restaurant_path(restaurant)
     
     first(:button, "Add to cart").click
+    visit cart_path
     click_on "Checkout"
     
     expect(page).to have_content("Order Summary")
@@ -47,6 +48,7 @@ describe "a user canceling an order", type: :feature do
     visit restaurant_path(restaurant)
 
     first(:button, "Add to cart").click
+    visit cart_path
     click_on "Checkout"
 
     expect(page).to have_content("Order Summary")
