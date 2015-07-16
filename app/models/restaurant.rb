@@ -26,17 +26,17 @@ class Restaurant < ActiveRecord::Base
   end
 
   def self.featured_restaurants
-    all.sample(3)
+    all[0..2]
   end
-  
+
   def frequently_ordered_items
     Hash[frequency_of_items_sold.sort.reverse].values[0..2]
   end
-  
+
   def all_order_items
     orders.flat_map {|order| order.order_items }
   end
-  
+
   def frequency_of_items_sold
     all_order_items.each_with_object({}) do |order_item, items|
       if items[order_item.item]

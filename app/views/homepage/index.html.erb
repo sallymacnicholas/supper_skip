@@ -1,7 +1,7 @@
 <div class="row" id="featured-restaurants">
   <div class="col-lg-8 col-lg-offset-2" id="static-header">
   <h1>Featured Restaurants</h1><br>
-    <% @restaurants.each do |restaurant| %>
+    <% @restaurants.featured_restaurants.each do |restaurant| %>
       <div class="item-box col-md-4">
         <div class="item-box-inner">
           <h4 class="item-title"><%= link_to restaurant.name, restaurant_path(restaurant) %></h4>
