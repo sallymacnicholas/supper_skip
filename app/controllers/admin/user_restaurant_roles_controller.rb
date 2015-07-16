@@ -11,15 +11,44 @@ class Admin::UserRestaurantRolesController < ApplicationController
   end
 
   def create
+    # binding.pry
    @user = User.find_by(email: params[:email])
-   user_role = UserRestaurantRole.new(user_id: @user.id, role_id: params[:roles].to_i, restaurant_id: @restaurant.id )
-     if user_role.save
-       flash[:message] = "You have successfully added #{@user.full_name} as a '#{@user.roles.last.name}'"
+   role = params[:roles].to_i
+    if @user.nil?
+      #  notification = Notification.find_by(email: params[:email])
+      #  Notification.create(email: params[:email], restaurant_id: @restaurant.id, role_id: role) unless notification
+
+       flash[:notice] = "Email sent!"
        redirect_to admin_restaurant_user_restaurant_roles_path(@restaurant)
+       NotificationMailer.notification_email(params[:email], current_user, @restaurant).deliver
      else
-       flash[:notice] = "THis doesn't work bitch"
-       render :new
+       user_role = UserRestaurantRole.new(user_id: @user.id, role_id: params[:roles].to_i, restaurant_id: @restaurant.id )
+       if user_role.save
+         flash[:message] = "You have successfully added #{@user.full_name} as a '#{@user.roles.last.name}'"
+         redirect_to admin_restaurant_user_restaurant_roles_path(@restaurant)
+       else
+         flash[:notice] = "You're new staff was not saved!"
+         render :new
+       end
      end
+
+#      user = User.find_by(email: valid_params[:email])
+# role = StaffRole.find_by(name: valid_params[:staff_role])
+# if user
+#   user.user_staff_roles.new(restaurant_id: owned_restaurant.id, staff_role: role)
+#   if user.save
+#     redirect_to restaurant_admin_dashboard_index_path
+#     flash[:notice] = "You successfully added #{user.role} #{user.full_name}!"
+#   else
+#     render :new
+#   end
+# else
+#   invite = Invite.find_by(email: valid_params[:email])
+#   Invite.create(email: valid_params[:email], restaurant_id: owned_restaurant.id, staff_role_id: role.id) unless invite
+#   InviteMailer.invite_email(valid_params[:email], current_user, owned_restaurant).deliver_now
+#   flash[:notice] = "Email sent!"
+#   redirect_to restaurant_admin_dashboard_index_path
+# end
   end
 
   private

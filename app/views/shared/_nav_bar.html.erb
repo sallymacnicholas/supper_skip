@@ -31,7 +31,7 @@
         <%= menu_item "Create Account", new_user_path %>
       <% end %>
       <% if current_user.nil? || !current_user.admin? %>
-        <%= menu_item "", cart_path, class: "glyphicon glyphicon-shopping-cart", id: "cart-icon" %>
+        <%= menu_item "#{@cart.count}", cart_path, class: "glyphicon glyphicon-shopping-cart", id: "cart-icon" %>
         <% if current_user %>
           <%= menu_item "Past Orders", user_orders_path %>
         <% end %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150715164838) do
+ActiveRecord::Schema.define(version: 20150716012906) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,6 +72,14 @@ ActiveRecord::Schema.define(version: 20150715164838) do
   end
 
   add_index "items", ["restaurant_id"], name: "index_items_on_restaurant_id", using: :btree
+
+  create_table "notifications", force: :cascade do |t|
+    t.string   "email"
+    t.integer  "restaurant_id"
+    t.integer  "role_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
 
   create_table "order_items", force: :cascade do |t|
     t.integer  "order_id"
