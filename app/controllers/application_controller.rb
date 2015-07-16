@@ -1,20 +1,16 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
+  helper_method :current_user
+  helper_method :restaurant_dropdown
+
   def current_user
-    if session[:admin]
-      @current_user ||= Admin.find(session[:user_id]) if session[:user_id]
-    else
-      @current_user ||= User.find(session[:user_id]) if session[:user_id]
-    end
+    @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
   def restaurant_dropdown
     Restaurant.all
   end
-  
-  helper_method :current_user
-  helper_method :restaurant_dropdown
 
   private
 
@@ -22,9 +18,4 @@ class ApplicationController < ActionController::Base
     @cart = Cart.new(session[:cart])
   end
   before_action :set_cart
-
-  def authorize
-    redirect_to root_path if current_user.nil? || !current_user.admin?
-  end
-  helper_method :authorize
 end
