@@ -2,24 +2,18 @@
 
 
 
-## Dinner Dash
+## Supper Skip
 
-This jam was brought to you by Emily Berkeley, Michael Dao, Krista Nelson and
+This jam was brought to you originally by Emily Berkeley, Michael Dao, Krista Nelson and
 Nathan Owsiany.
 
-This project is for the second module at the Turing School of Software and
+**But it was converted to a multitenancy application and made super awesome by Morgan Miller, Chelsea Worrel and Sally MacNicholas** 
+
+This project is for the third module at the Turing School of Software and
 Design.
 
 Full project specifications are available here:
-http://tutorials.jumpstartlab.com/projects/dinner_dash.html
-
-Emily Berkeley: https://github.com/EmilyMB
-
-Michael Dao: https://github.com/mikedao
-
-Krista Nelson: https://github.com/KristaANelson
-
-Nathan Owsiany: https://github.com/ndwhtlssthr
+https://github.com/JumpstartLab/curriculum/blob/master/source/projects/supper_skip.markdown
 
 ## Notes
 
